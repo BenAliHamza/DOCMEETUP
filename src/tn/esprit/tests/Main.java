@@ -6,7 +6,6 @@
 package tn.esprit.tests;
 
 import tn.esprit.entities.Personne;
-import tn.esprit.services.PersonneService;
 
 /**
  *
@@ -18,14 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        PersonneService ps = new PersonneService();
-        Personne p = new Personne(1, 33, "Belkneni", "Maroua");
-        ps.ajouter(p);
-        
-        // ps.supprimer(p);
-        
-        //System.out.println(ps.afficher());;
+            
     }
     
 }

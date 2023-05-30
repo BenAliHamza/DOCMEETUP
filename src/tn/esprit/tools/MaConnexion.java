@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Fayechi
  */
 public class MaConnexion {
-    String url ="jdbc:mysql://localhost:3306/javaapplication";
+    String url ="jdbc:mysql://localhost:3306/docmeetup1.0";
     String user ="root";
     String pwd="";
      private Connection cnx;
