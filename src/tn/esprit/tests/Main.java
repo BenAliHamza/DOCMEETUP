@@ -5,8 +5,14 @@
  */
 package tn.esprit.tests;
 
-import tn.esprit.entities.Personne;
-import tn.esprit.services.PersonneService;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import tn.esprit.entities.Role;
+import tn.esprit.entities.User;
+import tn.esprit.services.UserService;
+
 
 /**
  *
@@ -18,14 +24,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        PersonneService ps = new PersonneService();
-        Personne p = new Personne(1, 33, "Belkneni", "Maroua");
-        ps.ajouter(p);
-        
-        // ps.supprimer(p);
-        
-        //System.out.println(ps.afficher());;
     }
+       }
     
-}
+
