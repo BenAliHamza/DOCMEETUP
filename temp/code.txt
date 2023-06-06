@@ -1,0 +1,202 @@
+-- table user done
+CREATE TABLE User (
+  user_id INT PRIMARY KEY,
+  email VARCHAR(255),
+  password VARCHAR(255),
+  username VARCHAR(255),
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  birthdate DATE,
+  address_line1 VARCHAR(255),
+  address_line2 VARCHAR(255),
+  city VARCHAR(255),
+  state VARCHAR(255),
+  postal_code INT,
+  country VARCHAR(255),
+  phone INT,
+  profile_picture_url VARCHAR(255),
+  tax_registration_number VARCHAR(255),
+  role ENUM('patient', 'doctor','pharmacy','laboratory'),
+  doctor_specialty VARCHAR(255),
+  doctor_license_number VARCHAR(255),
+  doctor_clinic_name VARCHAR(255),
+  insurance_name VARCHAR(255),
+  laboratory_name VARCHAR(255),
+  pharmacy_name VARCHAR(255)
+);
+--done
+CREATE TABLE Consultation (
+  consultation_id INT PRIMARY KEY,
+  doctor_id INT,
+  patient_id INT,
+  followup_id INT,
+  medicalfile_id INT,
+  consultation_date DATE,
+  consultation_time TIME,
+  FOREIGN KEY (doctor_id) REFERENCES User(user_id),
+  FOREIGN KEY (patient_id) REFERENCES User(user_id),
+  FOREIGN KEY (followup_id) REFERENCES Followup(followup_id),
+  FOREIGN KEY (medicalfile_id) REFERENCES MedicalFile(file_id)
+);
+--table analysis done
+CREATE TABLE Analysis (
+  analysis_id INT PRIMARY KEY,
+  analysis_name VARCHAR(255),
+  user_id INT,
+  price DECIMAL(10, 2),
+  description VARCHAR(255),
+  result_type VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+--done
+CREATE TABLE Appointment (
+  appointment_id INT PRIMARY KEY,
+  doctor_id INT,
+  patient_id INT,
+  appointment_date DATE,
+  appointment_time TIME,
+  calendar_id INT,
+  status ENUM('scheduled', 'cancelled', 'completed'),
+  FOREIGN KEY (doctor_id) REFERENCES User(user_id),
+  FOREIGN KEY (patient_id) REFERENCES User(user_id),
+  FOREIGN KEY (calendar_id) REFERENCES Calendar(calendar_id)
+);
+--done
+CREATE TABLE Calendar (
+  calendar_id INT PRIMARY KEY,
+  doctor_id INT,
+  day_of_week INT,
+  start_time TIME,
+  end_time TIME,
+  is_break BOOLEAN,
+  break_start_time TIME,
+  break_end_time TIME,
+  FOREIGN KEY (doctor_id) REFERENCES User(user_id)
+);
+-- Table: Event done
+CREATE TABLE Event (
+  event_id INT PRIMARY KEY,
+  organizer_id INT,
+  event_name VARCHAR(255),
+  event_date DATE,
+  event_time TIME,
+  FOREIGN KEY (organizer_id) REFERENCES User(user_id)
+);
+--done
+-- Table: EventAttendance done
+CREATE TABLE EventAttendance (
+  event_id INT,
+  attendee_id INT,
+  PRIMARY KEY (event_id, attendee_id),
+  FOREIGN KEY (event_id) REFERENCES Event(event_id),
+  FOREIGN KEY (attendee_id) REFERENCES User(user_id)
+);
+--done
+CREATE TABLE Prescription (
+  prescription_id INT PRIMARY KEY,
+  doctor_id INT,
+  patient_id INT,
+  prescription_date DATE,
+  FOREIGN KEY (doctor_id) REFERENCES User(user_id),
+  FOREIGN KEY (patient_id) REFERENCES User(user_id)
+);
+--done
+CREATE TABLE PrescriptionMedication (
+  prescription_id INT,
+  medication_id INT,
+  quantity INT,
+  PRIMARY KEY (prescription_id, medication_id),
+  FOREIGN KEY (prescription_id) REFERENCES Prescription(prescription_id),
+  FOREIGN KEY (medication_id) REFERENCES Medication(medication_id)
+);
+--done
+CREATE TABLE PrescriptionAnalysis (
+  prescription_id INT,
+  analysis_id INT,
+  PRIMARY KEY (prescription_id, analysis_id),
+  FOREIGN KEY (prescription_id) REFERENCES Prescription(prescription_id),
+  FOREIGN KEY (analysis_id) REFERENCES Analysis(analysis_id)
+);
+--done
+CREATE TABLE Medication (
+  medication_id INT PRIMARY KEY,
+  medication_name VARCHAR(255),
+  description VARCHAR(255),
+  dosage_form VARCHAR(100),
+  strength VARCHAR(100),
+  route_of_administration VARCHAR(100),
+  manufacturer VARCHAR(255),
+  price DECIMAL(10, 2),
+  active_substances VARCHAR(255),
+  warnings VARCHAR(255),
+  side_effects VARCHAR(255),
+  storage_conditions VARCHAR(255),
+  additional_information TEXT
+);
+--done
+CREATE TABLE Calendar (
+  calendar_id INT PRIMARY KEY,
+  doctor_id INT,
+  day_of_week INT,
+  start_time TIME,
+  end_time TIME,
+  is_break BOOLEAN,
+  break_start_time TIME,
+  break_end_time TIME,
+  FOREIGN KEY (doctor_id) REFERENCES User(user_id)
+);
+--done
+CREATE TABLE MedicalFile (
+  file_id INT PRIMARY KEY,
+  patient_id INT,
+  followup_id INT,
+  medical_info TEXT,
+  medical_history TEXT,
+  last_visit_date DATE,
+  next_visit_date DATE,
+  allergies TEXT,
+  current_medications TEXT,
+  previous_conditions TEXT,
+  surgeries TEXT,
+  lab_results TEXT,
+  imaging_results TEXT,
+  prescribed_medications TEXT,
+  prescribed_analysis TEXT,
+  FOREIGN KEY (patient_id) REFERENCES User(user_id),
+  FOREIGN KEY (followup_id) REFERENCES Followup(followup_id)
+);
+--done
+CREATE TABLE InsuranceFile (
+  file_id INT PRIMARY KEY,
+  insurance_id INT,
+  patient_id INT,
+  medicalfile_id INT,
+  insurance_name VARCHAR(255),
+  insurance_policy_number VARCHAR(255),
+  insurance_details TEXT,
+  insurance_start_date DATE,
+  insurance_end_date DATE,
+  insurance_coverage DECIMAL(10, 2),
+  FOREIGN KEY (medicalfile_id) REFERENCES MedicalFile(file_id),
+  FOREIGN KEY (patient_id) REFERENCES User(user_id),
+  FOREIGN KEY (insurance_id) REFERENCES User(user_id)
+);
+--done
+CREATE TABLE FollowUp (
+  followup_id INT PRIMARY KEY,
+  user_id INT,
+  date DATE,
+  time TIME,
+  blood_pressure VARCHAR(10),
+  heart_rate INT,
+  temperature DECIMAL(5, 2),
+  weight DECIMAL(5, 2),
+  symptoms TEXT,
+  additional_notes TEXT,
+  diagnosis TEXT,
+  prescribed_medication TEXT,
+  recommended_tests TEXT,
+  next_appointment_date DATE,
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+

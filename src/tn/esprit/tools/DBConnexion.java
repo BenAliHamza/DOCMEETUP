@@ -13,14 +13,14 @@ import java.sql.SQLException;
  *
  * @author Fayechi
  */
-public class MaConnexion {
-    String url ="jdbc:mysql://localhost:3306/javaapplication";
+public class DBConnexion {
+    String url ="jdbc:mysql://localhost:3306/docmeetupdb2.0";
     String user ="root";
     String pwd="";
      private Connection cnx;
-    public static MaConnexion ct;
+    public static DBConnexion ct;
 
-    private MaConnexion() {
+    private DBConnexion() {
         try {
             cnx = DriverManager.getConnection(url, user, pwd);
             System.out.println("Cnx etablie !!");
@@ -29,9 +29,9 @@ public class MaConnexion {
         }
     }
     
-    public static MaConnexion getInstance(){
+    public static DBConnexion getInstance(){
         if(ct==null){
-            ct= new MaConnexion();
+            ct= new DBConnexion();
         }
         return ct;
     }

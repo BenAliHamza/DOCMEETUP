@@ -5,8 +5,17 @@
  */
 package tn.esprit.tests;
 
-import tn.esprit.entities.Personne;
-import tn.esprit.services.PersonneService;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.SimpleTimeZone;
+import tn.esprit.entities.FollowUp;
+import tn.esprit.tools.Role;
+import tn.esprit.entities.User;
+import tn.esprit.services.FollowUpService;
+import tn.esprit.services.UserService;
+
 
 /**
  *
@@ -17,15 +26,30 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        PersonneService ps = new PersonneService();
-        Personne p = new Personne(1, 33, "Belkneni", "Maroua");
-        ps.ajouter(p);
+    public static void main(String[] args) throws ParseException {
+        UserService userService = new UserService();
+
+        // Create a User object
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date birthdate = dateFormat.parse("1993/01/04 16:49");
+
+        User user = new User(1,"salimaroua1993@gmail.com", "mypassword", "SalimAroua",
+                Role.patient, "Salim", "Aroua", birthdate,"52", "rue de russie"
+                , "Bizerte", 7000, 53235426, "test123");
         
-        // ps.supprimer(p);
+        //System.out.println(user);
+
+        //userService.Create(user);
+        //userService.Update(user);
+        //userService.Delete(user);
+        //System.out.println(userService.Read());
+        //System.out.println(userService.SearchbyId(1));
         
-        //System.out.println(ps.afficher());;
+        
+        FollowUpService followService = new FollowUpService();
+        FollowUp F=new FollowUp( user, birthdate, "blood_pressure", 0, 0, 0);
+        followService.Create(F);
     }
+       }
     
-}
+

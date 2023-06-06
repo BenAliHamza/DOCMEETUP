@@ -1,0 +1,5 @@
+analysis_ibfk_1 user_id
+prescriptionanalysis_ibfk_1 presc_id
+prescriptionanalysis_ibfk_2 analys_id
+prescriptionmedication_ibfk_1 prescription
+prescriptionmedication_ibfk_2 medication

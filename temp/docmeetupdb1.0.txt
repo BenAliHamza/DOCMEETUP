@@ -1,0 +1,144 @@
+-- Table: User
+CREATE TABLE User (
+  user_id INT PRIMARY KEY,
+  email VARCHAR(255),
+  password VARCHAR(255),
+  username VARCHAR(255),
+  role ENUM('doctor', 'patient', 'pharmacy', 'laboratory', 'insurance')
+);
+
+-- Table: Doctor
+CREATE TABLE Doctor (
+  doctor_id INT PRIMARY KEY,
+  user_id INT,
+  specialty VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+-- Table: Patient
+CREATE TABLE Patient (
+  patient_id INT PRIMARY KEY,
+  user_id INT,
+  attribute VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+-- Table: Pharmacy
+CREATE TABLE Pharmacy (
+  pharmacy_id INT PRIMARY KEY,
+  user_id INT,
+  pharmacy_name VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+-- Table: Laboratory
+CREATE TABLE Laboratory (
+  lab_id INT PRIMARY KEY,
+  user_id INT,
+  lab_name VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+-- Table: Insurance
+CREATE TABLE Insurance (
+  insurance_id INT PRIMARY KEY,
+  user_id INT,
+  insurance_name VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+-- Table: Medication
+CREATE TABLE Medication (
+  medication_id INT PRIMARY KEY,
+  pharmacy_id INT,
+  medication_name VARCHAR(255),
+  quantity INT,
+  FOREIGN KEY (pharmacy_id) REFERENCES Pharmacy(pharmacy_id)
+);
+
+-- Table: Analysis
+CREATE TABLE Analysis (
+  analysis_id INT PRIMARY KEY,
+  lab_id INT,
+  analysis_name VARCHAR(255),
+  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id)
+);
+
+-- Table: LaboratoryAnalysis (junction table for many-to-many relationship between Laboratory and Analysis)
+CREATE TABLE LaboratoryAnalysis (
+  lab_id INT,
+  analysis_id INT,
+  PRIMARY KEY (lab_id, analysis_id),
+  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id),
+  FOREIGN KEY (analysis_id) REFERENCES Analysis(analysis_id)
+);
+
+-- Table: Prescription
+CREATE TABLE Prescription (
+  prescription_id INT PRIMARY KEY,
+  doctor_id INT,
+  patient_id INT,
+  prescription_date DATE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id)
+);
+
+-- Table: PrescriptionMedication (junction table for many-to-many relationship between Prescription and Medication)
+CREATE TABLE PrescriptionMedication (
+  prescription_id INT,
+  medication_id INT,
+  quantity INT,
+  PRIMARY KEY (prescription_id, medication_id),
+  FOREIGN KEY (prescription_id) REFERENCES Prescription(prescription_id),
+  FOREIGN KEY (medication_id) REFERENCES Medication(medication_id)
+);
+
+-- Table: PrescriptionAnalysis (junction table for many-to-many relationship between Prescription and Analysis)
+CREATE TABLE PrescriptionAnalysis (
+  prescription_id INT,
+  analysis_id INT,
+  PRIMARY KEY (prescription_id, analysis_id),
+  FOREIGN KEY (prescription_id) REFERENCES Prescription(prescription_id),
+  FOREIGN KEY (analysis_id) REFERENCES Analysis(analysis_id)
+);
+
+-- Table: Appointment
+CREATE TABLE Appointment (
+  appointment_id INT PRIMARY KEY,
+  doctor_id INT,
+  patient_id INT,
+  appointment_date DATE,
+  appointment_time TIME,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id)
+);
+
+-- Table: DoctorCalendar
+CREATE TABLE DoctorCalendar (
+  calendar_id INT PRIMARY KEY,
+  doctor_id INT,
+  day_of_week INT,
+  start_time TIME,
+  end_time TIME,
+  is_break INT,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+);
+
+-- Table: Event
+CREATE TABLE Event (
+  event_id INT PRIMARY KEY,
+  organizer_id INT,
+  event_name VARCHAR(255),
+  event_date DATE,
+  event_time TIME,
+  FOREIGN KEY (organizer_id) REFERENCES User(user_id)
+);
+
+-- Table: EventAttendance
+CREATE TABLE EventAttendance (
+  event_id INT,
+  attendee_id INT,
+  PRIMARY KEY (event_id, attendee_id),
+  FOREIGN KEY (event_id) REFERENCES Event(event_id),
+  FOREIGN KEY (attendee_id) REFERENCES User(user_id)
+);
