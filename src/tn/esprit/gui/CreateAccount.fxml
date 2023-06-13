@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.CreateAccountController">
+   <children>
+      <ImageView fitHeight="412.0" fitWidth="645.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Documents/NetBeansProjects/DocMeetUp/src/docmeetup/logo-de-soins-de-santé-et-fond-médical-d-abrégé-sur-ic-ne-54118802.jpg" />
+         </image>
+      </ImageView>
+      <Label contentDisplay="CENTER" layoutX="30.0" layoutY="25.0" prefHeight="51.0" prefWidth="219.0" text="Doc Meet Up" textAlignment="CENTER" textFill="#ff3636">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="323.0" layoutY="69.0" prefHeight="38.0" prefWidth="248.0" style="-fx-background-color: #ECF0F1;" text="Create an account" textFill="#2a00fc">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Login" editable="false" layoutX="323.0" layoutY="147.0" prefHeight="38.0" prefWidth="248.0" promptText="Login" style="-fx-background-color: #ECF0F1;" />
+      <PasswordField fx:id="Password" editable="false" layoutX="323.0" layoutY="203.0" prefHeight="38.0" prefWidth="248.0" promptText="Password" style="-fx-background-color: #ECF0F1;" />
+      <Button fx:id="SignUp" layoutX="389.0" layoutY="319.0" mnemonicParsing="false" onAction="#SignUp" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #0000FF;" text="Sign Up" />
+      <ComboBox layoutX="323.0" layoutY="262.0" prefHeight="38.0" prefWidth="248.0" promptText="Role Choice" style="-fx-background-color: #ECF0F1;" visibleRowCount="5" />
+   </children>
+</AnchorPane>

@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tn.esprit.services;
-
-import java.util.List;
+package tn.esprit.entities.Enum;
 
 /**
  *
- * @author Fayechi
+ * @author DELL
  */
-public interface IService<T> {
-    public void Create(T t);
-    public List<T> Read();
-    public void Delete(T t);
-        
+public enum Role {admin, doctor, patient, pharmacy, laboratory, insurance,
     
 }
