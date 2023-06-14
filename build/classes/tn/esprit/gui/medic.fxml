@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.MedicController">
+   <children>
+      <VBox layoutX="7.0" layoutY="8.0" prefHeight="203.0" prefWidth="131.0" spacing="19.0">
+         <children>
+            <Label text="medication name">
+               
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" text="description">
+               
+            </Label>
+            <Label layoutX="10.0" layoutY="27.0" text="additional info">
+                
+            </Label>
+            <Label layoutX="10.0" layoutY="44.0" text="price">
+                
+            </Label>
+            <Label layoutX="10.0" layoutY="61.0" text="stock">
+                
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="138.0" layoutY="8.0" prefHeight="168.0" prefWidth="126.0" spacing="10.0">
+         <children>
+            <TextField fx:id="txmedicname" promptText="medic name" />
+            <TextField fx:id="txdescription" promptText="description" />
+            <TextField fx:id="txinfo" promptText="information" />
+            <TextField fx:id="txprice" prefHeight="22.0" prefWidth="126.0" promptText="insert price" />
+            <TextField fx:id="txstock" promptText="insert stock" />
+         </children>
+      </VBox>
+      <Label layoutX="464.0" layoutY="21.0" prefHeight="25.0" prefWidth="131.0" text="search">
+         
+      </Label>
+      <Button fx:id="btnupdatemedic" layoutX="100.0" layoutY="251.0" mnemonicParsing="false" onAction="#updatemedic" text="update" />
+      <Button fx:id="btnaddmedic" layoutX="11.0" layoutY="251.0" mnemonicParsing="false" onAction="#addmedic" text="add" />
+      <Button fx:id="btndeletemedic" layoutX="194.0" layoutY="251.0" mnemonicParsing="false" onAction="#deletemedic" text="delete" />
+      <TextField fx:id="filterField" layoutX="564.0" layoutY="21.0" promptText="recherche" />
+      <TableView fx:id="tvmedic" layoutX="275.0" layoutY="55.0" onMouseClicked="#selectrow" prefHeight="243.0" prefWidth="494.0">
+        <columns>
+          <TableColumn fx:id="tvmedicname" prefWidth="81.0" text="medication" />
+            <TableColumn fx:id="tvdescription" prefWidth="98.0" text="description" />
+            <TableColumn fx:id="tvinfo" prefWidth="93.0" text="additional info" />
+            <TableColumn fx:id="tvprice" prefWidth="81.0" text="price" />
+            <TableColumn fx:id="tvstock" prefWidth="136.0" text="stock" />
+        </columns>
+      </TableView>
+   </children>  
+</AnchorPane>
