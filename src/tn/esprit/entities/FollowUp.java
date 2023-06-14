@@ -42,6 +42,10 @@ public class FollowUp {
         this.weight = weight;
     }
 
+    public FollowUp() {
+    }
+    
+
     public int getFollowup_id() {
         return followup_id;
     }

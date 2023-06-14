@@ -147,11 +147,11 @@ import tn.esprit.tools.DBConnexion;
         try {
            
             String sql="select * from user where user_id= "+id;
-            System.out.println(sql);
+            
             Statement st = cnx.createStatement();
             ResultSet rs= st.executeQuery(sql);
              while(rs.next()){
-            System.out.println(rs);
+           
             
                 u = new User(rs.getInt("user_id"),rs.getString("email"),rs.getString("password"),rs.getString("username"),Role.valueOf(rs.getString("role")),
                         rs.getString("first_name"),rs.getString("last_name"),rs.getDate("birthdate"),rs.getString("address_line1"),rs.getString("address_line2"),rs.getString("city")

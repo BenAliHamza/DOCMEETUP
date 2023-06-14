@@ -5,9 +5,13 @@
  */
 package tn.esprit.services;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import tn.esprit.entities.FollowUp;
 import tn.esprit.tools.DBConnexion;
@@ -45,22 +49,100 @@ String sql="insert into followup(followup_id,user_id,date,blood_pressure,heart_r
 
     @Override
     public void Update(FollowUp o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql= "update followup "
+                + "set "
+                +"user_id=?,"
+                + "date = ?,"
+                + "blood_pressure = ?,"
+                + "heart_rate = ?,"
+                + "temperature = ?,"
+                + "weight = ?"
+                + " where followup_id = ?;";
+        try {
+            PreparedStatement st = cnx.prepareStatement(sql);
+            st.setInt(1,o.getUser().getUser_id());
+            st.setDate(2, new java.sql.Date(o.getDate().getTime()));
+            st.setString(3,o.getBlood_pressure());
+            st.setInt(4,o.getHeart_rate());
+            st.setFloat(5,o.getTemperature());
+            st.setFloat(6,o.getWeight());
+            st.setInt(7,o.getFollowup_id());
+            
+            System.out.println(st);
+            st.executeUpdate();
+            System.out.println("FollowUp updated");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
     }
 
     @Override
     public List<FollowUp> Read() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<FollowUp> Followups = new ArrayList<>();
+        try {
+           
+            String sql="select * from followup";
+            Statement st = cnx.createStatement();
+            UserService us= new UserService();
+            
+            ResultSet rs= st.executeQuery(sql);
+            while(rs.next()){
+                FollowUp f = new FollowUp(rs.getInt("followup_id" ),
+                        us.SearchbyId(rs.getInt("user_id")),
+                        rs.getDate("date"), 
+                        rs.getString("blood_pressure"),
+                        rs.getInt("heart_rate"),
+                        rs.getFloat("temperature"),
+                        rs.getFloat("weight"));
+                Followups.add(f);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return Followups;
     }
+
 
     @Override
     public void Delete(FollowUp o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      String sql="delete from followup where followup_id ="
+                 + " ? ;";
+        try {
+            PreparedStatement st= cnx.prepareStatement(sql);
+            st.setInt(1, o.getFollowup_id());
+            st.executeUpdate();
+            System.out.println("Followup deleted");
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+    
 
     @Override
     public FollowUp SearchbyId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        FollowUp f= new FollowUp();
+        try {
+           
+            String sql="select * from followup where followup_id= "+id;
+            Statement st = cnx.createStatement();
+            ResultSet rs= st.executeQuery(sql);
+             while(rs.next()){
+           
+            UserService us=new UserService();
+                f = new FollowUp(rs.getInt("followup_id"),
+                        us.SearchbyId(rs.getInt("user_id")),
+                        rs.getDate("date"),
+                        rs.getString("blood_pressure"), 
+                        rs.getInt("heart_rate"), 
+                        rs.getFloat("temperature"), 
+                        rs.getFloat("weight"));
+       
+             }
+             } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return f;    }
     
 }

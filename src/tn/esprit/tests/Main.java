@@ -29,12 +29,12 @@ public class Main {
     public static void main(String[] args) throws ParseException {
         UserService userService = new UserService();
 
-        // Create a User object
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date birthdate = dateFormat.parse("1993/01/04 16:49");
 
-        User user = new User(1,"salimaroua1993@gmail.com", "mypassword", "SalimAroua",
-                Role.patient, "Salim", "Aroua", birthdate,"52", "rue de russie"
+        User user = new User(2,"salimaroua1993@gmail.com", "mypassword", "SalimAroua",
+               Role.patient, "Salim", "Aroua", birthdate,"52", "rue de russie"
                 , "Bizerte", 7000, 53235426, "test123");
         
         //System.out.println(user);
@@ -43,12 +43,14 @@ public class Main {
         //userService.Update(user);
         //userService.Delete(user);
         //System.out.println(userService.Read());
+        FollowUp f= new FollowUp(5,user, birthdate, "blood_pressure123", 0, 0, 0);
         //System.out.println(userService.SearchbyId(1));
         
         
         FollowUpService followService = new FollowUpService();
-        FollowUp F=new FollowUp( user, birthdate, "blood_pressure", 0, 0, 0);
-        followService.Create(F);
+        //FollowUp F=new FollowUp( user, birthdate, "blood_pressure", 0, 0, 0);
+        //followService.Delete(f);
+        //System.out.println(followService.SearchbyId(2));
     }
        }
     
