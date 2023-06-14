@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.InterfaceController">
+   <children>
+      <TextField fx:id="TextOrganizer" layoutX="88.0" layoutY="127.0" />
+      <Label layoutX="14.0" layoutY="131.0" text="Organizer" textFill="#003eff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="173.0" text="Event_name" textFill="#003eff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="211.0" text="Event_date" textFill="#003eff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="248.0" prefHeight="17.0" prefWidth="89.0" text="Event_time" textFill="#003eff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TextName" layoutX="88.0" layoutY="169.0" />
+      <TextField fx:id="TextTime" layoutX="88.0" layoutY="244.0" />
+      <Button layoutX="117.0" layoutY="347.0" mnemonicParsing="false" onAction="#AddEvenement" prefHeight="39.0" prefWidth="89.0" text="Ajouter">
+         <textFill>
+            <RadialGradient centerX="0.4222222222222222" centerY="0.2238095238095238" radius="0.5">
+               <stops>
+                  <Stop color="#ff009e" />
+                  <Stop color="#ff009e" offset="0.007662835249042145" />
+                  <Stop color="#5500ff" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <Button layoutX="447.0" layoutY="347.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="39.0" prefWidth="89.0" text="Annuler" textFill="#5500ff" />
+      <DatePicker fx:id="TextDate" layoutX="88.0" layoutY="208.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="TextEvent" layoutX="88.0" layoutY="88.0" />
+      <Label layoutX="14.0" layoutY="92.0" text="Event_id" textFill="#003eff">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="221.0" layoutY="347.0" mnemonicParsing="false" onAction="#UpdEvenement" prefHeight="39.0" prefWidth="89.0" text="Modifier" textFill="#5500ff" />
+      <Button fx:id="buttonDelete" layoutX="326.0" layoutY="347.0" mnemonicParsing="false" onAction="#Delete" prefHeight="39.0" prefWidth="107.0" text="Supprimer" textFill="#5500ff" />
+      <TableView layoutX="345.0" layoutY="54.0" prefHeight="287.0" prefWidth="519.0">
+        <columns>
+          <TableColumn prefWidth="139.0" text="Nom de l'evenement" />
+            <TableColumn prefWidth="86.0" text="Organisateur" />
+            <TableColumn prefWidth="136.0" text="Date de l'evenement" />
+            <TableColumn minWidth="0.0" prefWidth="150.0" text="Heure de l'evenement" />
+        </columns>
+      </TableView>
+      <Label layoutX="161.0" layoutY="4.0" text="Bienvenu dans notre Evenement                                          " textFill="#0700ff">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

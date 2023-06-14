@@ -5,27 +5,25 @@
  */
 package tn.esprit.tests;
 
-import tn.esprit.entities.Personne;
-import tn.esprit.services.PersonneService;
+import java.sql.Date;
+import java.sql.Time;
+import tn.esprit.entities.Evenement;
+import tn.esprit.entities.User;
+import tn.esprit.services.EvenementService;
 
 /**
  *
- * @author Fayechi
+ * @author DRIDI Oussama
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        PersonneService ps = new PersonneService();
-        Personne p = new Personne(1, 33, "Belkneni", "Maroua");
-        ps.ajouter(p);
-        
-        // ps.supprimer(p);
-        
-        //System.out.println(ps.afficher());;
-    }
     
+    Date d= new Date(2020,05,21);
+            Time t=new Time(20,22,59);
+    EvenementService es = new EvenementService();
+        User u =new User();
+        
+        Evenement e = new Evenement(2,u , "qwerty", d, t);
+        
+
+   
 }
