@@ -26,11 +26,6 @@ public class Laboratory extends User {
         this.tax_registration_number = tax_registration_number;
     }
 
-
-
-    public class Role {
-    // Implémentez la classe Role selon vos besoins
-}
-
+ 
 }
 

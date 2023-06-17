@@ -33,14 +33,5 @@ public class Docteur extends User{
         this.tax_registration_number = tax_registration_number;
     }
 
-
-public class Role {
-    // Implémentez la classe Role selon vos besoins
-}
-
-public class Doctor_specialty {
-    // Implémentez la classe Specialite selon vos besoins
-}
-
-    
+ 
 }

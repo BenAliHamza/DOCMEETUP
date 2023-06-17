@@ -3,17 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/tests/NewFXMain.java</file>
-            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/User.java</file>
-            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Enum/Role.java</file>
-            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/services/UserService.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/gui/AdminAccount.fxml</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Pharmacy.java</file>
             <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Admin.java</file>
-            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Docteur.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/services/UserService.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Patient.java</file>
             <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Insurance.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/gui/CreateAccountController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/User.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/gui/AdminAccountController.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Enum/Role.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/gui/MainApp.java</file>
+            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/Laboratory.java</file>
             <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/gui/InscriptionMenuController.java</file>
             <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/tests/Main.java</file>
-            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/gui/CreateAccountController.java</file>
-            <file>file:/C:/Users/DELL/Desktop/DocMeetUp/src/tn/esprit/entities/PasswordHashing.java</file>
         </group>
     </open-files>
 </project-private>

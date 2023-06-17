@@ -2,9 +2,7 @@ package tn.esprit.tests;
 
 import java.sql.Date;
 import java.util.List;
-import tn.esprit.entities.Personne;
 import tn.esprit.entities.User;
-import tn.esprit.services.PersonneService;
 import tn.esprit.services.UserService;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -18,7 +16,7 @@ import tn.esprit.entities.Enum.Role;
 
 public class Main {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         String dateString = "2023-06-06"; // La date en format String
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -31,9 +29,13 @@ public class Main {
             e.printStackTrace();
         }
 
-        Date d = new Date(2023, 06, 23);
+        Date d = new Date(2023, 06, 23);*/
         UserService ps = new UserService();
-        User t = new User(123456, "tt@esprit.tn", "password", "username", "First_name", "Last_name", d, "", "", City.Ariana, 99887766, "Profile", Role.doctor);
+        User t;
+
+    public Main() {
+        this.t = new User(123456, "tt@esprit.tn", "password", "username", "First_name", "Last_name", "14/06/2023", "", "", City.Ariana, 99887766, "Profile", Role.doctor);
+    }
 
         ps.Create(t);
     }

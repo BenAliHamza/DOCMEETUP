@@ -20,11 +20,6 @@ public class Patient extends User{
     }
 
 
-   
-    public class Role {
-    // Implémentez la classe Role selon vos besoins
-}
-
     }
     
 

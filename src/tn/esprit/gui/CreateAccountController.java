@@ -8,14 +8,20 @@ package tn.esprit.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import tn.esprit.entities.Enum.Role;
 import tn.esprit.entities.PasswordHashing;
 
 
@@ -32,61 +38,66 @@ public class CreateAccountController implements Initializable {
     private PasswordField Password;
     @FXML
     private Button SignUp;
+    @FXML
+    private ComboBox<Role> RoleComboBox;
+    
 
-    /**
-     * Initializes the controller class.
-     */
+    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-    @FXML
-    private void SignUp(ActionEvent event) throws IOException {
-    
-    String L = Login.getText();
-    String P = Password.getText();
-   
-     // Vérifier si les identifiants sont valides et créer le compte
-    if (isValidCredentials(L, P)) {
-            createAccount(L, P);
-            redirectToInscriptionMenu();
-    } else {
-       redirectToCreateAccount();
+        RoleComboBox.getItems().addAll(Role.values());
     }
-}
+
+@FXML
+    private void SignUp(ActionEvent event) throws IOException {
+        String L = Login.getText();
+        String P = Password.getText();
+        Role selectedRole = RoleComboBox.getValue();
+
+        if (isValidCredentials(L, P) && selectedRole != null) {
+            createAccount(L, P, selectedRole);
+            redirectToInscriptionMenu();
+        } else {
+            redirectToCreateAccount();
+        }
+    }
 
 private void redirectToInscriptionMenu() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("InscriptionMenu.fxml"));
             Parent root = loader.load();
             InscriptionMenuController inscriptionMenuController = loader.getController();
-            // Vous pouvez passer des données au contrôleur de la page InscriptionMenuController si nécessaire
-            // inscriptionMenuController.setUserData(userData);
-            // Code pour afficher la scène InscriptionMenu.fxml dans une fenêtre séparée
-
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Inscription Menu");
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
             
     }
 
-private void createAccount(String login, String password) {
-    String salt = PasswordHashing.generateSalt();
-    String hashedPassword = PasswordHashing.hashPassword(password, salt);
-
-    // Vous pouvez utiliser le login, le hashedPassword et le salt pour enregistrer le compte dans votre système
-
-    System.out.println("Login : " + login);
-    System.out.println("Mot de passe haché : " + hashedPassword);
-}
-
-    private boolean isValidCredentials(String L, String P) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+private void createAccount(String login, String password, Role role) {
+        String salt = PasswordHashing.generateSalt();
+        String hashedPassword = PasswordHashing.hashPassword(password, salt);
+        System.out.println("Login : " + login);
+        System.out.println("Mot de passe haché : " + hashedPassword);
+        System.out.println("Rôle : " + role);
     }
 
-    private void redirectToCreateAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
+ private boolean isValidCredentials(String L, String P) {
+        return !L.isEmpty() && !P.isEmpty();
+    }
+ 
+ private void redirectToCreateAccount() {
+  
+ }
+
+    private static class FXMLLoa {
+        public FXMLLoa() {
+        }
+    }
 }
