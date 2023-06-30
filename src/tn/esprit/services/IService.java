@@ -11,12 +11,11 @@ import java.util.List;
  *
  * @author Fayechi
  */
-public interface IService<O> {
-    public void Create(O o);
-    public void Update( O o);
-    public List<O> Read();
-    public void Delete(O o);
-    
+public interface IService<T> {
+    public void Create(T t);
+    public List<T> Read();
+    public void Delete(int i);
+    public void Update (T t);
     
     
 }

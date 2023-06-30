@@ -7,8 +7,14 @@ package tn.esprit.entities;
 
 /**
  *
- * @author HP
+ * @author ASUS
  */
 public enum Role {
-    patient,doctor,pharmacy,laboratory,insurance
+    patient,doctor,pharmacy,laboratory,insutance
+
 }
+
+
+
+
+
