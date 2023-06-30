@@ -16,7 +16,7 @@ public interface IService<O> {
     public void Update( O o);
     public List<O> Read();
     public void Delete(O o);
-    public O SearchbyId(int id); 
+    
     
     
 }
