@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.AfficherConsultationController">
+<AnchorPane id="AnchorPane" fx:id="consultationDetail" prefHeight="450.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AfficherConsultationController">
    <children>
       <TextField fx:id="docId" editable="false" layoutX="138.0" layoutY="67.0" />
       <TextField fx:id="patientId" editable="false" layoutX="138.0" layoutY="115.0" />
       <TextField fx:id="price" editable="false" layoutX="138.0" layoutY="156.0" />
       <TextField fx:id="date" editable="false" layoutX="138.0" layoutY="207.0" />
-      <TextField fx:id="isPayed" editable="false" layoutX="351.0" layoutY="315.0" prefHeight="31.0" prefWidth="229.0" />
-      <MenuButton accessibleRole="BUTTON" layoutX="351.0" layoutY="355.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="229.0" text="Modifier" textAlignment="CENTER">
+      <TextField fx:id="isPayed" editable="false" layoutX="139.0" layoutY="303.0" prefHeight="31.0" prefWidth="214.0" />
+      <MenuButton accessibleRole="BUTTON" layoutX="6.0" layoutY="14.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="229.0" text="Modifier" textAlignment="CENTER">
         <items>
           <MenuItem fx:id="updateBtn" mnemonicParsing="false" onAction="#onUpdate" text="Update " />
           <MenuItem fx:id="deleteBtn" mnemonicParsing="false" onAction="#onDelete" text="Delete" />
@@ -26,10 +26,11 @@
       <Label layoutX="21.0" layoutY="212.0" prefHeight="21.0" prefWidth="81.0" text="Date" />
       <Label layoutX="21.0" layoutY="261.0" text="Time" />
       <TextField fx:id="time" editable="false" layoutX="138.0" layoutY="256.0" />
-      <Label layoutX="351.0" layoutY="287.0" prefHeight="21.0" prefWidth="187.0" text="Payment : ">
+      <Label layoutX="9.0" layoutY="303.0" prefHeight="30.0" prefWidth="117.0" text="Payment : ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <TextField fx:id="rapport" disable="true" layoutX="9.0" layoutY="344.0" prefHeight="91.0" prefWidth="346.0" />
    </children>
 </AnchorPane>

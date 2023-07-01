@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tn.esprit.gui.consultations;
+package tn.esprit.gui.consultations.controllers;
 
 import java.net.URL;
 import java.sql.Date;
@@ -37,6 +37,8 @@ public class AfficherConsultationController implements Initializable {
     private TextField isPayed;
     @FXML
     private TextField time;
+    @FXML
+    private TextField rapport ; 
     @FXML
     private MenuItem updateBtn;
     @FXML
@@ -73,6 +75,14 @@ public class AfficherConsultationController implements Initializable {
    public void setDate(Date date) {
     this.date.setText(date.toString());
 }
+
+    public TextField getRapport() {
+        return rapport;
+    }
+
+    public void setRapport(String rapport) {
+        this.rapport.setText(rapport);
+    }
 
     public void setIsPayed(boolean  isPayed) {
         if(isPayed) {

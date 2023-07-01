@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/tests/Main.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/AjouterConsultationController.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/Consultations.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/entities/Consulation.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/AjouterConsultation.fxml</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AfficherConsultationController.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/HomePageController.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/FXML/FXML.fxml</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/FXML/AjouterConsultation.fxml</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AjouterConsultationController.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AfficherConsultationsListController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -6,31 +6,23 @@
 package tn.esprit.gui.consultations;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 /**
  *
  * @author Hamza
  */
 public class Consultations extends Application {
-    private static  String  title = " Ajouter une consultation " ; 
+    private static  String  title = "Home Page" ; 
     @Override
-    public void start(Stage primaryStage) {
-     
+    public void start(Stage primaryStage) {     
         Parent root; 
         try {
-            root = FXMLLoader.load(getClass().getResource("AjouterConsultation.fxml"));
-            Scene scene = new  Scene(root, 600, 500);
+            root = FXMLLoader.load(getClass().getResource("./FXML/HomePage.fxml"));
+            Scene scene = new  Scene(root, 1084, 650);
         
             primaryStage.setTitle(title);
             primaryStage.setScene(scene);

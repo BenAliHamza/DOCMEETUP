@@ -19,9 +19,12 @@ public class Consulation {
     private double price ; 
     private  Date  date ;
     private  Time time ; 
+    private  String rapport;  
     
     
     public Consulation(int doctor_id, int patient_id, double price, Date date, Time time) {
+                System.out.println(date);
+        System.out.println(time);
         this.doctor_id = doctor_id;
         this.patient_id = patient_id;
         this.price =  price;
@@ -32,6 +35,7 @@ public class Consulation {
     }
 
     public Consulation(int consultation_id, int doctor_id, int patient_id, Boolean isPayed, Boolean isPrescription, double price, Date date, Time time) {
+
         this.consultation_id = consultation_id;
         this.doctor_id = doctor_id;
         this.patient_id = patient_id;
@@ -51,6 +55,14 @@ public class Consulation {
 
     public void setConsultation_id(int consultation_id) {
         this.consultation_id = consultation_id;
+    }
+
+    public String getRapport() {
+        return rapport;
+    }
+
+    public void setRapport(String rapport) {
+        this.rapport = rapport;
     }
 
     public int getDoctor_id() {
@@ -113,7 +125,9 @@ public class Consulation {
     public String toString() {
         return "Consulation{" + "consultation_id=" + consultation_id + ", doctor_id=" + doctor_id + ", patient_id=" + patient_id + ", isPayed=" + isPayed + ", isPrescription=" + isPrescription + ", price=" + price + ", date=" + date + ", time=" + time + '}';
     }
-
+    public String getInformationToDisplay(){
+        return "Consulation : Mr/Mme " + patient_id + "  le " + date.toString();
+    }
 
 
    

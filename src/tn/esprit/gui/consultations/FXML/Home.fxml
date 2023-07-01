@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="homeBackground" prefHeight="542.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.HomeController">
+   <children>
+      <ButtonBar layoutX="70.0" layoutY="49.0">
+         <buttons>
+            <ImageView fitHeight="217.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../tn.esprit.assets/images-removebg-preview.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </buttons>
+      </ButtonBar>
+      <ImageView fitHeight="206.0" fitWidth="293.0" layoutX="511.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../tn.esprit.assets/images-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="206.0" fitWidth="293.0" layoutX="80.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../tn.esprit.assets/images-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="217.0" fitWidth="257.0" layoutX="495.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../tn.esprit.assets/images-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

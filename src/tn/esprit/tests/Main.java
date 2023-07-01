@@ -23,9 +23,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            Consulation  consulation = new Consulation(  1 , 5 ,  60.00 ,  new Date(System.currentTimeMillis()), new Time(System.currentTimeMillis()));
-            ConsulationService cs = new ConsulationService();
+            Consulation  consulation = new Consulation(  1 , 2 ,  60.00 ,  new Date(System.currentTimeMillis()), new Time(System.currentTimeMillis()));
+            ConsulationService cs = new ConsulationService();          
             cs.ajouter(consulation);
+            
+     /*       cs.ajouter(consulation);
             int test = consulation.getConsultation_id();
             System.out.println("-------------------------------------");
             List<Consulation>  consulations = new ArrayList <>(); 
@@ -37,7 +39,7 @@ public class Main {
             Consulation  consulation3 = new Consulation(  2 , 5 ,  45.00 ,  new Date(System.currentTimeMillis()), new Time(System.currentTimeMillis()));
             cs.ajouter(consulation3);
             consulation3.setIsPayed(true);
-            cs.updateConsultation(consulation3);
+            cs.updateConsultation(consulation3); */
 
            
 
