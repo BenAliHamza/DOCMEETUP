@@ -136,4 +136,24 @@ public Evenement getById(int eventId) {
     }
     return evenement;
 }
+public List<User> getParticipants(int eventId) {
+    List<User> participants = new ArrayList<>();
+    String sql = "SELECT u.user_id, u.username " +
+                 "FROM user u INNER JOIN eventattendance ea ON u.user_id = ea.attendee_id " +
+                 "WHERE ea.event_id = ?";
+    try (PreparedStatement st = cnx.prepareStatement(sql)) {
+        st.setInt(1, eventId);
+        ResultSet rs = st.executeQuery();
+        while (rs.next()) {
+            User participant = new User();
+            participant.setUser_id(rs.getInt("user_id"));
+            participant.setUsername(rs.getString("username"));
+            participants.add(participant);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return participants;
+}
+
 }

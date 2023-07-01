@@ -65,7 +65,7 @@
             <TableColumn minWidth="0.0" prefWidth="150.0" text="Heure de l'evenement" />
         </columns>
       </TableView>
-      <Label layoutX="161.0" layoutY="4.0" text="Bienvenu dans notre Evenement                                          " textFill="#0700ff">
+      <Label layoutX="161.0" layoutY="4.0" text="Bienvenu dans votre Evenement                                          " textFill="#0700ff">
          <font>
             <Font size="32.0" />
          </font>

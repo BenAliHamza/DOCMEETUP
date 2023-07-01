@@ -1,41 +1,59 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tn.esprit.gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import tn.esprit.entities.Evenement;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import tn.esprit.entities.User;
 import tn.esprit.services.EvenementService;
-/**
- * FXML Controller class
- *
- * @author USER
- */
-public class SpectateurController implements Initializable {
+
+public class SpectateurController {
+    @FXML
+    private TextField TextEvent;
 
     @FXML
-     
-private TableColumn<Evenement, User> catColumn;
-       
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-         catColumn.setCellValueFactory(new PropertyValueFactory<>("catv_id"));
-          EvenementService ec = new EvenementService();
-     //   tableviewEquipement.setItems(FXCollections.observableArrayList(ec.afficher()));
-    }    
-    
+    private ChoiceBox<String> catColumn;
+
+    @FXML
+    private Label participantsLabel;
+
+    private EvenementService evenementService;
+
+    public SpectateurController() {
+        evenementService = new EvenementService();
+    }
+
+@FXML
+void initialize() {
+    String eventIdText = TextEvent.getText();
+    if (!eventIdText.isEmpty()) {
+        int eventId = Integer.parseInt(eventIdText);
+        ObservableList<String> participantsList = getParticipants(eventId);
+        catColumn.setItems(participantsList);
+    }
+}
+
+
+@FXML
+void AddEvenement(ActionEvent event) {
+    int eventId = Integer.parseInt(TextEvent.getText());
+    ObservableList<String> participantsList = getParticipants(eventId);
+    catColumn.setItems(participantsList);
+    participantsLabel.setText("Participants: " + participantsList.size());
+}
+
+
+
+
+    private ObservableList<String> getParticipants(int eventId) {
+        ObservableList<String> participants = FXCollections.observableArrayList();
+        for (User participant : evenementService.getParticipants(eventId)) {
+            participants.add(participant.getUsername());
+        }
+        return participants;
+    }
 }

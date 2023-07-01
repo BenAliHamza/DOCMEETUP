@@ -22,8 +22,13 @@ public class MainWindow extends Application {
     public void start(Stage primaryStage) {
 
         try {
-           // Locale.setDefault(new Locale("fr"));
-            Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/afficher.fxml"));
+           //Locale.setDefault(new Locale("fr"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/AjouterEvenement.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/afficher.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/ModifierEvenement.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/spectateur.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/Interface.fxml"));
+            
 
             Scene scene = new Scene(root);
 
