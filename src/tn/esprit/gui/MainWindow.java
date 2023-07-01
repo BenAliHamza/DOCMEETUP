@@ -24,10 +24,10 @@ public class MainWindow extends Application {
         try {
            //Locale.setDefault(new Locale("fr"));
             //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/AjouterEvenement.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/afficher.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/afficher.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/ModifierEvenement.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/spectateur.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/Interface.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("/tn/esprit/gui/Interface.fxml"));
             
 
             Scene scene = new Scene(root);

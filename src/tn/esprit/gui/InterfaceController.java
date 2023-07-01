@@ -110,12 +110,41 @@ public class InterfaceController implements Initializable {
 
     @FXML
     private void UpdEvenement(ActionEvent event) {
-        
-        
-    }
+        int eventID = Integer.parseInt(TextEvent.getText());
+    String organizerName = TextOrganizer.getText();
+    String eventName = TextName.getText();
+    LocalDate eventDate = TextDate.getValue();
 
-    @FXML
-    private void Delete(ActionEvent event) {
-    }
-    
+    String[] timeParts = TextTime.getText().split(":");
+    int hours = Integer.parseInt(timeParts[0]);
+    int minutes = Integer.parseInt(timeParts[1]);
+    int seconds = Integer.parseInt(timeParts[2]);
+
+LocalTime eventTime = LocalTime.parse(TextTime.getText());
+EvenementService es= new EvenementService();
+    Evenement existingEvent = es.getById(eventID);
+
+    existingEvent.setOrganizer(new User(organizerName));
+    existingEvent.setEvent_name(eventName);
+    existingEvent.setEvent_date(eventDate);
+    existingEvent.setEvent_time(eventTime);
+
+    // Update the event in the database
+    es.Update(existingEvent);
+
+    // Clear the text fields
+    TextEvent.clear();
+    TextOrganizer.clear();
+    TextName.clear();
+    TextTime.clear();
 }
+
+        
+    
+
+    
+    public void Delete(ActionEvent event) {
+
+    }
+}
+

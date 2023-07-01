@@ -13,9 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import tn.esprit.entities.Evenement;
 import tn.esprit.entities.User;
 import tn.esprit.services.EvenementService;
@@ -87,7 +89,20 @@ private void AddEvenement(ActionEvent event) {
     eventService.ajouter(events);
 
     // Close the current window
-    TextOrganizer.getScene().getWindow().hide();
+    try {
+                FXMLLoader loader = new  FXMLLoader(getClass().getResource("afficher.fxml"));
+
+                Parent root = loader.load();
+                Stage stage = (Stage) TextOrganizer.getScene().getWindow(); // Replace button with your actual button object
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        
+        stage.show();
+               
+                
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
 }
 
     @FXML
