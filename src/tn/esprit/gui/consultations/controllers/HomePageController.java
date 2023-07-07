@@ -48,7 +48,7 @@ public class HomePageController implements Initializable {
     private void setNode(Node node ) {
         holderPanel.getChildren().clear(); 
         holderPanel.getChildren().add( (Node)node); 
-        FadeTransition ft = new FadeTransition(Duration.millis(1500));
+        FadeTransition ft = new FadeTransition(Duration.millis(1000));
         ft.setNode(node);
         ft.setFromValue(0.5);
         ft.setToValue(1); 
@@ -66,20 +66,45 @@ public class HomePageController implements Initializable {
     }
       public void loadConsultationList() {
         try {
-                   homeBackground =  FXMLLoader.load(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
-                   setNode(homeBackground);
+                   FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
+                   Parent consultationPane = loader.load();
+                   AfficherConsultationsListController c = loader.getController();
+                   c.populateConsultationsList(); 
+                   setNode(consultationPane);
         }catch( Exception e ) {
             System.out.println(e);
         }
     }
-        public void CreateNewConsultation() {
-        try {
-                  homeBackground =  FXMLLoader.load(getClass().getResource("../FXML/AjouterConsultation.fxml"));
-                   setNode(homeBackground);
-        }catch( Exception e ) {
-            System.out.println(e);
-        }
+      public void loadConsultationList(int id ) {
+                 try {
+                   FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
+                   Parent consultationPane = loader.load();
+                   AfficherConsultationsListController c = loader.getController();
+                   c.setConsultationId(id);
+                   setNode(consultationPane);
+                }catch( Exception e ) {
+                    System.out.println(e);
+                }
+     
+      }
+
+public void CreateNewConsultation() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
+        Parent consultationPane = loader.load();
+        AjouterConsultationController controller = loader.getController();        
+        controller.setDocId(2);
+        controller.setPatientId(1);
+        setNode(consultationPane);
+    } catch (Exception e) {
+        e.printStackTrace();
+        e.getMessage();
     }
+}
+
+
+
+
 
 
 

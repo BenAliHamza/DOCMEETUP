@@ -5,10 +5,10 @@
         <group>
             <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AfficherConsultationController.java</file>
             <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/HomePageController.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/FXML/FXML.fxml</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/FXML/AjouterConsultation.fxml</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AjouterConsultationController.java</file>
             <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AfficherConsultationsListController.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AjouterConsultationController.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/Consultations.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/entities/Consulation.java</file>
         </group>
     </open-files>
 </project-private>

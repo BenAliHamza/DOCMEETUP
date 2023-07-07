@@ -12,7 +12,7 @@ import java.util.List;
  * @author Fayechi
  */
 public interface IService<T> {
-    public void ajouter(T t);
+    public int ajouter(T t);
     public List<T> afficher();
     public void supprimer(T t);
     

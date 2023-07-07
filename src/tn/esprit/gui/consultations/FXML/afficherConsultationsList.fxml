@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AfficherConsultationsListController">
+<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AfficherConsultationsListController">
    <children>
       <ListView fx:id="listView" layoutX="14.0" layoutY="14.0" prefHeight="540.0" prefWidth="392.0" style="-fx-border-radius: 2px; -fx-min-height: 50px;">
          <cursor>
@@ -18,7 +18,7 @@
             <Font name="Bauhaus 93" size="16.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="consultationDetails" layoutX="434.0" layoutY="69.0" prefHeight="430.0" prefWidth="426.0" style="-fx-background-color: white;" />
-      <Button fx:id="newConsBtn" layoutX="434.0" layoutY="520.0" mnemonicParsing="false" onAction="#createNewConsultation" prefHeight="31.0" prefWidth="426.0" text="create new consultation (Provisoir ) " />
+      <AnchorPane fx:id="consultationDetails" layoutX="434.0" layoutY="69.0" prefHeight="463.0" prefWidth="426.0" style="-fx-background-color: white;" />
+      <Button fx:id="newConsBtn" layoutX="428.0" layoutY="563.0" mnemonicParsing="false" onAction="#createNewConsultation" prefHeight="31.0" prefWidth="426.0" text="create new consultation (Provisoir ) " />
    </children>
 </AnchorPane>

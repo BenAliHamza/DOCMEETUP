@@ -22,9 +22,7 @@ public class Consulation {
     private  String rapport;  
     
     
-    public Consulation(int doctor_id, int patient_id, double price, Date date, Time time) {
-                System.out.println(date);
-        System.out.println(time);
+    public Consulation(int doctor_id, int patient_id, double price, Date date, Time time) {;
         this.doctor_id = doctor_id;
         this.patient_id = patient_id;
         this.price =  price;
@@ -34,8 +32,7 @@ public class Consulation {
         this.isPrescription = false ; 
     }
 
-    public Consulation(int consultation_id, int doctor_id, int patient_id, Boolean isPayed, Boolean isPrescription, double price, Date date, Time time) {
-
+    public Consulation(int consultation_id, int doctor_id, int patient_id, Boolean isPayed, Boolean isPrescription, double price, Date date, Time time , String rapport) {
         this.consultation_id = consultation_id;
         this.doctor_id = doctor_id;
         this.patient_id = patient_id;
@@ -44,6 +41,7 @@ public class Consulation {
         this.price = price;
         this.date = date;
         this.time = time;
+        this.rapport =rapport;
     }
 
 

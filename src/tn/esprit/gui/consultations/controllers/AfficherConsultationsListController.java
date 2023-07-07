@@ -32,6 +32,7 @@ public class AfficherConsultationsListController implements Initializable {
     private ListView<Consulation> listView;
     @FXML 
     Button newConsBtn ; 
+    private int  consultationId ; 
 
     private final ConsulationService consultationService = new ConsulationService();
 
@@ -39,7 +40,7 @@ public class AfficherConsultationsListController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         populateConsultationsList();
     }
-   private void populateConsultationsList() {
+   public void populateConsultationsList() {
     List<Consulation> consultations = consultationService.afficher();
     listView.setItems(FXCollections.observableArrayList(consultations));
 
@@ -81,6 +82,15 @@ public class AfficherConsultationsListController implements Initializable {
         ft.setAutoReverse(false);
         ft.play();
     }
+
+    public int getConsultationId() {
+        return consultationId;
+    }
+
+    public void setConsultationId(int consultationId) {
+        this.consultationId = consultationId;
+        loadConsultationInformation(consultationId); 
+    }
        public void loadConsultationInformation(int id ) {
         try {
             ConsulationService cs = new ConsulationService();
@@ -121,4 +131,5 @@ public class AfficherConsultationsListController implements Initializable {
         }
 
     }   
+    
 }

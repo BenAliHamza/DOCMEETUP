@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 import tn.esprit.entities.Consulation;
 import tn.esprit.tools.MaConnexion ;
 
@@ -27,88 +28,106 @@ public class ConsulationService  implements  IService<Consulation>  {
     }
     
     @Override
-      public void ajouter(Consulation c){
-      String sql="insert into consultation (doctor_id ,patient_id ,isPayed,isPrescription , price , consultation_date , consultation_time ) values"
-                 + "(?,?,?,?,?,?,?)";
-              try {
-            PreparedStatement st = cnx.prepareStatement(sql , Statement.RETURN_GENERATED_KEYS) ;
+     public int ajouter(Consulation c) {
+        String sql = "INSERT INTO consultation (doctor_id, patient_id, isPayed, isPrescription, price, consultation_date, consultation_time, rapport) VALUES (?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             st.setInt(1, c.getDoctor_id());
             st.setInt(2, c.getPatient_id());
-            st.setBoolean(3 , c.getIsPayed());
-            st.setBoolean(4 , c.getIsPrescription());
+            st.setBoolean(3, true);
+            st.setBoolean(4, c.getIsPrescription());
             st.setDouble(5, c.getPrice());
-            st.setDate(6,new java.sql.Date(c.getTime().getTime()));
+            st.setDate(6, new java.sql.Date(c.getTime().getTime()));
             st.setTime(7, new java.sql.Time(c.getDate().getTime()));
+            st.setString(8, c.getRapport());
             st.executeUpdate();
             System.out.println("Consulation added");
-              int rowsAffected = st.executeUpdate();
-                try (ResultSet generatedKeys = st.getGeneratedKeys()) {
-                    if (rowsAffected == 1) {
-                        if (generatedKeys.next()) {
-                            int consultationId = generatedKeys.getInt(1);
-                            c.setConsultation_id(consultationId); // Assuming you have a setId() method in your Consulation class to set the ID
-                            System.out.println("Consulation added with ID: " + consultationId);
-                } 
+            int rowsAffected = st.executeUpdate();
+            try (ResultSet generatedKeys = st.getGeneratedKeys()) {
+                if (rowsAffected == 1) {
+                    if (generatedKeys.next()) {
+                        int consultationId = generatedKeys.getInt(1);
+                        c.setConsultation_id(consultationId); // Assuming you have a setId() method in your Consulation class to set the ID
+                        System.out.println("Consulation added with ID: " + consultationId);
+                        return consultationId;
+                    }
                 }
-             }
-        
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    } 
-    
-    @Override
-    public List<Consulation> afficher() {
-         List<Consulation> Consulations = new ArrayList<>();
-        try {
-           
-            String sql="select * from consultation";
-            Statement st = cnx.createStatement();
-            
-            ResultSet rs= st.executeQuery(sql);
-            while(rs.next()){
-                Consulation consulation = new Consulation(rs.getInt("consultation_id"),rs.getInt("doctor_id"),rs.getInt("patient_id") , rs.getBoolean("isPayed") , rs.getBoolean("isPrescription") , rs.getDouble("price"), 
-                rs.getDate("consultation_date" ) , rs.getTime("consultation_time"));
-                Consulations.add(consulation);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                // Handle the exception if parsing the IDs fails
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Storage Error");
+                alert.setHeaderText(null);
+                alert.setContentText(ex.getMessage());
+                alert.showAndWait();
+                return -1;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            // Handle the exception if parsing the IDs fails
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Storage Error");
+            alert.setHeaderText(null);
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
+            return -1;
         }
-        return Consulations; 
+        return 0;
     }
 
-    @Override
-    public void supprimer(Consulation c) {
-        String sql="delete from consultation where consultation_id ="
-                 + " ? ;";
-        try {
-            PreparedStatement st= cnx.prepareStatement(sql);
-            st.setInt(1, c.getConsultation_id());
-            st.executeUpdate();
-            System.out.println("Consulation is Deleted");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-    public List<Consulation> getConsultationsByPatientId(int patientId) {
-            List<Consulation> consultations = new ArrayList<>();
+
+        @Override
+        public List<Consulation> afficher() {
+             List<Consulation> Consulations = new ArrayList<>();
             try {
-                String sql = "SELECT * FROM consultation WHERE patient_id = ?";
-                PreparedStatement statement = cnx.prepareStatement(sql);
-                statement.setInt(1, patientId);
 
-                ResultSet rs = statement.executeQuery();
-                while (rs.next()) {
-                    Consulation consultation = new Consulation(rs.getInt("consultation_id"), rs.getInt("doctor_id"), rs.getInt("patient_id"), rs.getBoolean("isPayed"), rs.getBoolean("isPrescription"), rs.getDouble("price"), rs.getDate("consultation_date"), rs.getTime("consultation_time"));
-                    consultations.add(consultation);
+                String sql="select * from consultation";
+                Statement st = cnx.createStatement();
+
+                ResultSet rs= st.executeQuery(sql);
+                while(rs.next()){
+                    Consulation consulation = new Consulation(rs.getInt("consultation_id"),rs.getInt("doctor_id"),rs.getInt("patient_id") , rs.getBoolean("isPayed") , rs.getBoolean("isPrescription") , rs.getDouble("price"), 
+                    rs.getDate("consultation_date" ) , rs.getTime("consultation_time"),rs.getString("rapport"));
+                    Consulations.add(consulation);
                 }
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-            return consultations;
+            return Consulations; 
+        }
+
+        @Override
+        public void supprimer(Consulation c) {
+            String sql="delete from consultation where consultation_id ="
+                     + " ? ;";
+            try {
+                PreparedStatement st= cnx.prepareStatement(sql);
+                st.setInt(1, c.getConsultation_id());
+                st.executeUpdate();
+                System.out.println("Consulation is Deleted");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
     }
-    public List<Consulation> getConsultationsByPatientIdAndDoctorId(int patientId , int docId) {
+    
+        public List<Consulation> getConsultationsByPatientId(int patientId) {
+                List<Consulation> consultations = new ArrayList<>();
+                try {
+                    String sql = "SELECT * FROM consultation WHERE patient_id = ?";
+                    PreparedStatement statement = cnx.prepareStatement(sql);
+                    statement.setInt(1, patientId);
+
+                    ResultSet rs = statement.executeQuery();
+                    while (rs.next()) {
+                        Consulation consultation = new Consulation(rs.getInt("consultation_id"), rs.getInt("doctor_id"), rs.getInt("patient_id"), rs.getBoolean("isPayed"), rs.getBoolean("isPrescription"), rs.getDouble("price"), rs.getDate("consultation_date"), rs.getTime("consultation_time"),rs.getString("rapport"));
+                        consultations.add(consultation);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                return consultations;
+        }
+        public List<Consulation> getConsultationsByPatientIdAndDoctorId(int patientId , int docId) {
             List<Consulation> consultations = new ArrayList<>();
             try {
                 String sql = "SELECT * FROM consultation WHERE patient_id = ? && doctor_id = ?";
@@ -119,7 +138,7 @@ public class ConsulationService  implements  IService<Consulation>  {
 
                 ResultSet rs = statement.executeQuery();
                 while (rs.next()) {
-                    Consulation consultation = new Consulation(rs.getInt("consultation_id"), rs.getInt("doctor_id"), rs.getInt("patient_id"), rs.getBoolean("isPayed"), rs.getBoolean("isPrescription"), rs.getDouble("price"), rs.getDate("consultation_date"), rs.getTime("consultation_time"));
+                    Consulation consultation = new Consulation(rs.getInt("consultation_id"), rs.getInt("doctor_id"), rs.getInt("patient_id"), rs.getBoolean("isPayed"), rs.getBoolean("isPrescription"), rs.getDouble("price"), rs.getDate("consultation_date"), rs.getTime("consultation_time"),rs.getString("rapport"));
                     consultations.add(consultation);
                 }
             } catch (SQLException ex) {
@@ -168,7 +187,8 @@ public class ConsulationService  implements  IService<Consulation>  {
                     rs.getBoolean("isPrescription"),
                     rs.getDouble("price"),
                     rs.getDate("consultation_date"),
-                    rs.getTime("consultation_time")
+                    rs.getTime("consultation_time"),
+                    rs.getString("rapport")
                 );
             }
         } catch (SQLException ex) {
