@@ -14,12 +14,21 @@ import java.util.Date;
  */
 public class User {
     protected int user_id;
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
     protected String email;
     protected String password;
     protected String username;
     protected Role role;
     protected String first_name;
     protected String last_name;
+
+    public User(int user_id, String first_name) {
+        this.user_id = user_id;
+        this.first_name = first_name;
+    }
     protected Date birthdate;
     protected String address_line1;
     protected String address_line2;
@@ -27,6 +36,10 @@ public class User {
     protected String state;
     protected int postal_code;
     protected String country;
+
+    public User(int user_id) {
+        this.user_id = user_id;
+    }
     protected int phone;
     protected String profile_picture_url;
 
@@ -69,6 +82,8 @@ public class User {
         this.phone = phone;
         this.profile_picture_url = profile_picture_url;
     }
+
+  
 
     public int getUser_id() {
         return user_id;

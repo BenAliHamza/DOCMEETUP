@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Gui.DocTimeController">
+    <TableView fx:id="appointmentTableView" layoutX="30.0" layoutY="20.0" onMouseClicked="#row" prefHeight="300" prefWidth="540">
+<columns>
+                 <TableColumn fx:id="descriptiontv" prefWidth="197.0" text="description">
+                     <cellValueFactory>
+                         <PropertyValueFactory property="heure_debut" />
+                     </cellValueFactory>
+                 </TableColumn>
+                 <TableColumn fx:id="statustv" prefWidth="158.0" text="status">
+                     <cellValueFactory>
+                         <PropertyValueFactory property="heure_fin" />
+                     </cellValueFactory>
+                 </TableColumn>
+         <TableColumn fx:id="datetimetv" prefWidth="184.0" text="date and time">
+            <cellValueFactory>
+               <PropertyValueFactory property="heure_fin" />
+            </cellValueFactory>
+         </TableColumn>
+             </columns>    </TableView>
+   <Button fx:id="ValidS" layoutX="178.0" layoutY="340.0" mnemonicParsing="false" onAction="#validS" prefHeight="25.0" prefWidth="211.0" text="change status" />
+   <Button fx:id="back" layoutX="470.0" layoutY="343.0" mnemonicParsing="false" onAction="#myap" prefHeight="25.0" prefWidth="100.0" text="return" />
+</AnchorPane>

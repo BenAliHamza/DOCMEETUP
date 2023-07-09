@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package docMeetUp;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.time.Duration;
+import tn.esprit.entities.Calendar;
+import tn.esprit.services.AppointmentService;
+import tn.esprit.services.CalendarService;
 
 /**
  *
@@ -11,8 +17,16 @@ package docMeetUp;
  */
 public class DocMeetUp {
 
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) { 
+            CalendarService a = new CalendarService();
+                        AppointmentService za = new AppointmentService();
+        System.out.println("azedazdazdz//////////");
+       
+            // System.out.println(  a.getCalendar(1));
+                     //     System.out.println(  a.getAllCalendars());
+
+                      System.out.println(  za.getAllAppointments());
+
     }
-    
+
 }
