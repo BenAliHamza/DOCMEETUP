@@ -42,6 +42,13 @@ public class FollowUp {
         this.weight = weight;
     }
 
+    public FollowUp(  Date date, String blood_pressure, int heart_rate, float temperature, float weight) {
+         this.date = date;
+        this.blood_pressure = blood_pressure;
+        this.heart_rate = heart_rate;
+        this.temperature = temperature;
+        this.weight = weight;
+    }
     public FollowUp() {
     }
     

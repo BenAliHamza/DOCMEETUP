@@ -33,6 +33,10 @@ public class User {
     public User() {
     }
 
+    public User(int user_id) {
+        this.user_id = user_id;
+    }
+
     public User(String email, String password, String username,Role role, String first_name,
             String last_name, Date birthdate, String address_line1, String address_line2, String city,
             int postal_code,  int phone, String profile_picture_url) {
