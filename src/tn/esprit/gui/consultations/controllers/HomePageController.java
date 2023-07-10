@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import tn.esprit.entities.Consulation;
 /**
  * FXML Controller class
  *
@@ -80,6 +81,7 @@ public class HomePageController implements Initializable {
                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
                    Parent consultationPane = loader.load();
                    AfficherConsultationsListController c = loader.getController();
+                   c.populateConsultationsList(); 
                    c.setConsultationId(id);
                    setNode(consultationPane);
                 }catch( Exception e ) {
@@ -95,6 +97,18 @@ public void CreateNewConsultation() {
         AjouterConsultationController controller = loader.getController();        
         controller.setDocId(2);
         controller.setPatientId(1);
+        setNode(consultationPane);
+    } catch (Exception e) {
+        e.printStackTrace();
+        e.getMessage();
+    }
+}
+public void CreateNewConsultation(Consulation c ) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
+        Parent consultationPane = loader.load();
+        AjouterConsultationController controller = loader.getController();        
+        controller.setConsultation(c);
         setNode(consultationPane);
     } catch (Exception e) {
         e.printStackTrace();

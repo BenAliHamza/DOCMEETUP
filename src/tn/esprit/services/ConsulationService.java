@@ -149,7 +149,7 @@ public class ConsulationService  implements  IService<Consulation>  {
     
         public void updateConsultation(Consulation consultation) {
         try {
-            String sql = "UPDATE consultation SET doctor_id = ?, patient_id = ?, isPayed = ?, isPrescription = ?, price = ?, consultation_date = ?, consultation_time = ? WHERE consultation_id = ?";
+            String sql = "UPDATE consultation SET doctor_id = ?, patient_id = ?, isPayed = ?, isPrescription = ?, price = ?, consultation_date = ?, consultation_time = ?, rapport  = ? WHERE consultation_id = ?";
             PreparedStatement statement = cnx.prepareStatement(sql);
             statement.setInt(1, consultation.getDoctor_id());
             statement.setInt(2, consultation.getPatient_id());
@@ -158,8 +158,11 @@ public class ConsulationService  implements  IService<Consulation>  {
             statement.setDouble(5, consultation.getPrice());
             statement.setDate(6, new java.sql.Date(consultation.getTime().getTime()));
             statement.setTime(7, new java.sql.Time(consultation.getDate().getTime()));
-            statement.setInt(8, consultation.getConsultation_id());
-
+            statement.setString(8 , consultation.getRapport()); 
+            statement.setInt(9, consultation.getConsultation_id());
+            System.out.println(sql);
+            System.out.println(statement);
+            statement.executeUpdate();
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Consultation updated successfully.");

@@ -42,7 +42,8 @@ public class AfficherConsultationsListController implements Initializable {
     }
    public void populateConsultationsList() {
     List<Consulation> consultations = consultationService.afficher();
-    listView.setItems(FXCollections.observableArrayList(consultations));
+    if(!consultations.isEmpty()){
+        listView.setItems(FXCollections.observableArrayList(consultations));
 
     // Set a cell factory to customize each item in the ListView
     listView.setCellFactory(param -> new ListCell<Consulation>() {
@@ -71,6 +72,8 @@ public class AfficherConsultationsListController implements Initializable {
         }
     });
 }
+    }
+    
     private void setNode(Node node ) {
         consultationDetails.getChildren().clear(); 
         consultationDetails.getChildren().add( (Node)node); 

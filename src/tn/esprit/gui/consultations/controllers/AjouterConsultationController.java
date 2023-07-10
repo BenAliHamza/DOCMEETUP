@@ -5,7 +5,6 @@
      */
     package tn.esprit.gui.consultations.controllers;
 
-    import java.io.IOException;
     import java.net.URL;
     import java.sql.Date;
     import java.sql.Time;
@@ -18,6 +17,7 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
     import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
     import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -43,11 +43,15 @@ import javafx.scene.layout.AnchorPane;
         @FXML
         private Button btnCreate;
         @FXML
+        private Label titre ; 
+        @FXML
         private TextArea rapport;
         @FXML
         private ToggleButton toggleButton;
         private int doctorId ;
         private int patienttId;
+        private Consulation consultation ; 
+        private Boolean updateMode =false;
 
         /**
          * Initializes the controller class.
@@ -58,7 +62,7 @@ import javafx.scene.layout.AnchorPane;
              toggleButton.setStyle("-fx-background-color: red; -fx-cursor: pointer;");
              toggleButton.setText("Not payed");
                // Event handler for mouse entered
-        toggleButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+             toggleButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
             if (!toggleButton.isSelected()) {
                 toggleButton.setStyle("-fx-background-color: #ff4d4d;"); // Red color when hovered
             }else{
@@ -67,15 +71,15 @@ import javafx.scene.layout.AnchorPane;
             }
         });
 
-        // Event handler for mouse exited
-        toggleButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
-            if (!toggleButton.isSelected()) {
-                toggleButton.setStyle("-fx-background-color: red;"); // Reset to red color when not hovered
-            }else{
-             toggleButton.setStyle("-fx-background-color: green;"); // Red color when hovered
+            // Event handler for mouse exited
+            toggleButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
+                if (!toggleButton.isSelected()) {
+                    toggleButton.setStyle("-fx-background-color: red;"); // Reset to red color when not hovered
+                }else{
+                 toggleButton.setStyle("-fx-background-color: green;"); // Red color when hovered
 
-            }
-        });
+                }
+            });
              
         }
 
@@ -95,6 +99,17 @@ import javafx.scene.layout.AnchorPane;
     public void setPatientId(int patientId) {
                 // this is suppose to get the user and set the user name 
         this.patientId.setText(""+patientId) ;
+    }
+
+    public Consulation getConsultation() {
+        return consultation;
+    }
+
+    public void setConsultation(Consulation consultation) {
+        this.consultation = consultation;
+        this.updateMode =true; 
+        OnUpdateMode(); 
+        
     }
 
     public TextField getPrice() {
@@ -135,8 +150,12 @@ import javafx.scene.layout.AnchorPane;
 
         @FXML
         private void onAjouteConsultation(ActionEvent event) {
-             boolean toggleState = toggleButton.isSelected();
-                System.out.println("Toggle state: " + toggleState);
+            if(updateMode) {
+                onUpdateConsultation();
+               
+                return; 
+            }else {
+            boolean toggleState = toggleButton.isSelected();
             int docId = Integer.parseInt(this.docId.getText());
             int patientId = Integer.parseInt(this.patientId.getText());
             Double pricee ; 
@@ -157,21 +176,10 @@ import javafx.scene.layout.AnchorPane;
             consulation.setRapport(rapport.getText());
             ConsulationService cs = new ConsulationService();
             int id = cs.ajouter(consulation);
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/HomePage.fxml"));
-                Parent root = loader.load();
-                HomePageController ac = loader.getController();
-                ac.loadConsultationList(id);
-                Stage stage = (Stage) wrapper.getScene().getWindow(); // Replace `button` with your actual button object
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-                
-            } catch (Exception  ex) {
-                System.out.println(ex);
-                System.out.println(ex.getStackTrace());
+            returnToList(id);
 
             }
+          
 
         }
         @FXML
@@ -189,6 +197,60 @@ import javafx.scene.layout.AnchorPane;
 
             }
         }
+        private void OnUpdateMode() {
+            titre.setText("Formulaire de modification consultation");
+            docId.setText(""+consultation.getDoctor_id());
+            patientId.setText(""+ consultation.getPatient_id());
+            rapport.setText(consultation.getRapport());
+            price.setText(""+consultation.getPrice());
+            Boolean state = consultation.getIsPayed();
+            btnCreate.setText("Mettre à jour la consultation");
+            toggleButton.setSelected(state);
+            if(state) {
+                     toggleButton.setStyle("-fx-background-color: green; -fx-cursor: pointer;");
+                     toggleButton.setText("Payed");
+            }
+            
+            
+        }
+        public void onUpdateConsultation(){
+            consultation.setIsPayed(toggleButton.isSelected());
+            Double pricee ; 
+            try {
+            pricee = Double.parseDouble(this.price.getText());
+            consultation.setPrice(pricee);
 
+            } catch (NumberFormatException e) {
+            // Handle the exception if parsing the IDs fails
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Input Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid ID value. Please enter a valid numeric ID.");
+            alert.showAndWait();
+            return ; 
+            }
+            String rap = rapport.getText();
+            consultation.setRapport(rap); 
+            ConsulationService cs = new ConsulationService();
+            cs.updateConsultation(consultation);            
+        }
+        
+        private void returnToList(int id ) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/HomePage.fxml"));
+                Parent root = loader.load();
+                HomePageController ac = loader.getController();
+                ac.loadConsultationList(id);
+                Stage stage = (Stage) wrapper.getScene().getWindow(); // Replace `button` with your actual button object
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                
+            } catch (Exception  ex) {
+                System.out.println(ex);
+                System.out.println(ex.getStackTrace());
+
+            }
+        }
 
     }

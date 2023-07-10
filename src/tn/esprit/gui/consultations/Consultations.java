@@ -23,7 +23,6 @@ public class Consultations extends Application {
         try {
             root = FXMLLoader.load(getClass().getResource("./FXML/HomePage.fxml"));
             Scene scene = new  Scene(root, 1084, 650);
-        
             primaryStage.setTitle(title);
             primaryStage.setScene(scene);
             primaryStage.show();

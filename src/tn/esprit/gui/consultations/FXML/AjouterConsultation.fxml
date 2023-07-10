@@ -20,7 +20,7 @@
          <font>
             <Font name="Bauhaus 93" size="15.0" />
          </font></Button>
-      <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="22.0" prefHeight="21.0" prefWidth="546.0" text="Formulaire de creation de nouvelle consultation" textAlignment="CENTER">
+      <Label fx:id="titre" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="22.0" prefHeight="21.0" prefWidth="546.0" text="Formulaire de creation de nouvelle consultation" textAlignment="CENTER">
          <font>
             <Font name="Bauhaus 93" size="16.0" />
          </font>

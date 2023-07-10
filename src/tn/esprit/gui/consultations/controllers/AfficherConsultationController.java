@@ -5,11 +5,14 @@
  */
 package tn.esprit.gui.consultations.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -128,10 +131,6 @@ public class AfficherConsultationController implements Initializable {
         this.time.setText(time.toString());
     }
 
-    @FXML
-    private void onUpdate(ActionEvent event) {
-    }
-
   @FXML
     private void onDelete(ActionEvent event) {
         // Create a confirmation dialog
@@ -154,6 +153,23 @@ public class AfficherConsultationController implements Initializable {
             success.setContentText("Consultation deleted successfully!");
             success.showAndWait();
             returnToList();
+        }
+    }
+    @FXML 
+    public void onUpdate( ActionEvent event ) {
+               try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/HomePage.fxml"));
+        Parent root = loader.load();
+        HomePageController ac = loader.getController();
+        Stage stage = (Stage) docId.getScene().getWindow(); // Replace `button` with your actual button object
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        ac.CreateNewConsultation(consultation);
+        stage.show();
+
+        } catch (IOException ex) {
+            System.out.println(ex);
+            Logger.getLogger(AfficherConsultationsListController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private void returnToList(){
