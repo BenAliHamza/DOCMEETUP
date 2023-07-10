@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AnalysisController">
+   
+   <children>
+      <VBox layoutX="7.0" layoutY="8.0" prefHeight="203.0" prefWidth="131.0" spacing="19.0">
+         <children>
+            <Label text="analysis name">
+               
+            </Label>
+            <Label layoutX="10.0" layoutY="27.0" text="description">
+                
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" text="result type">
+               
+            </Label>
+            <Label layoutX="10.0" layoutY="44.0" text="price">
+                
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="138.0" layoutY="8.0" prefHeight="168.0" prefWidth="126.0" spacing="10.0">
+         <children>
+            <TextField fx:id="txanalyname" promptText="analysis name" />
+            <TextField fx:id="txdescriptionanaly" promptText="description" />
+            <TextField fx:id="txresulttypeanaly" promptText="result type" />
+            <TextField fx:id="txpriceanaly" prefHeight="22.0" prefWidth="126.0" promptText="insert price" />
+         </children>
+      </VBox>
+      <Label layoutX="464.0" layoutY="21.0" prefHeight="25.0" prefWidth="131.0" text="search">
+         
+      </Label>
+      <Button fx:id="btnaddanaly" layoutX="11.0" layoutY="251.0" mnemonicParsing="false" onAction="#addanaly" text="add" />
+      <Button fx:id="btndeleteanaly" layoutX="194.0" layoutY="251.0" mnemonicParsing="false" onAction="#deleteanaly" text="delete" />
+      <TextField fx:id="filterField" layoutX="564.0" layoutY="21.0" onKeyTyped="#search" promptText="search" />
+      <TableView fx:id="tvanaly" layoutX="275.0" layoutY="55.0" onMouseClicked="#selectrow" prefHeight="243.0" prefWidth="494.0">
+        <columns>
+          <TableColumn fx:id="tvanalyname" prefWidth="121.0" text="analysis" />
+            <TableColumn fx:id="tvdescriptionanaly" prefWidth="122.0" text="description" />
+            <TableColumn fx:id="tvresulttypeanaly" prefWidth="149.0" text="result type" />
+            <TableColumn fx:id="tvpriceanaly" prefWidth="101.0" text="price" />
+        </columns>
+      </TableView>
+      <Button fx:id="upanaly" layoutX="98.0" layoutY="251.0" mnemonicParsing="false" onAction="#updateanaly" text="update" />
+   </children>  
+</AnchorPane>

@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import tn.esprit.entities.Consulation;
+import tn.esprit.entities.Role;
 /**
  * FXML Controller class
  *
@@ -33,6 +34,8 @@ public class HomePageController implements Initializable {
     AnchorPane  homeBackground ;
      @FXML
     Button btnConsultation;
+      @FXML
+    Button followUp;
     @FXML
     Button dashboard ; 
 
@@ -90,34 +93,87 @@ public class HomePageController implements Initializable {
      
       }
 
-public void CreateNewConsultation() {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
-        Parent consultationPane = loader.load();
-        AjouterConsultationController controller = loader.getController();        
-        controller.setDocId(2);
-        controller.setPatientId(1);
-        setNode(consultationPane);
-    } catch (Exception e) {
-        e.printStackTrace();
-        e.getMessage();
+    public void CreateNewConsultation() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
+            Parent consultationPane = loader.load();
+            AjouterConsultationController controller = loader.getController();        
+            controller.setDocId(2);
+            controller.setPatientId(1);
+            setNode(consultationPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
     }
-}
-public void CreateNewConsultation(Consulation c ) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
-        Parent consultationPane = loader.load();
-        AjouterConsultationController controller = loader.getController();        
-        controller.setConsultation(c);
-        setNode(consultationPane);
-    } catch (Exception e) {
-        e.printStackTrace();
-        e.getMessage();
+    public void CreateNewConsultation(Consulation c ) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
+            Parent consultationPane = loader.load();
+            AjouterConsultationController controller = loader.getController();        
+            controller.setConsultation(c);
+            setNode(consultationPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
     }
-}
 
-
-
+          public void onFollowUp() {
+            Role role  = Role.pharmacy  ; 
+            String url ; 
+            switch(role) {
+                case  patient : 
+                    url = "../FXML/Search.fxml" ; 
+                       try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                                Parent consultationPane = loader.load();
+                                SearchController controller = loader.getController();        
+                                setNode(consultationPane);
+                     }catch( Exception e ) {
+                         System.out.println(e);
+                         System.out.println(e.getMessage());
+                     }
+                     break ; 
+                case pharmacy : 
+                    url = "../FXML/medic.fxml" ; 
+                       try {
+                       FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                       Parent consultationPane = loader.load();
+                       MedicController controller = loader.getController();        
+                       setNode(consultationPane);
+                        }catch( Exception e ) {
+                            System.out.println(e);
+                            System.out.println(e.getMessage());
+                        }
+                    break ; 
+                case laboratory : 
+                    url = "../FXML/analysis.fxml" ; 
+                       try {
+                       FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                       Parent consultationPane = loader.load();
+                       AnalysisController controller = loader.getController();        
+                       setNode(consultationPane);
+                        }catch( Exception e ) {
+                            System.out.println(e);
+                            System.out.println(e.getMessage());
+                        }
+                    break ; 
+                default:
+                    url = "../FXML/Search.fxml" ;
+                       try {
+                       FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                       Parent consultationPane = loader.load();
+                       setNode(consultationPane);
+                        }catch( Exception e ) {
+                            System.out.println(e);
+                            System.out.println(e.getMessage());
+                        }
+                    break ;
+                                        
+            }
+         
+        }
 
 
 

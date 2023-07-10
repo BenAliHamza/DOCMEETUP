@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.SearchController">
+   <children>
+      <TextField fx:id="filterField" layoutX="393.0" layoutY="90.0" onKeyPressed="#search" promptText="search" />
+      <TableView fx:id="tvsearch" layoutX="282.0" layoutY="142.0" prefHeight="200.0" prefWidth="292.0">
+        <columns>
+          <TableColumn fx:id="tvname" prefWidth="99.0" text="NameMedic" />
+            <TableColumn fx:id="pharmacie" prefWidth="117.0" text="PharmacyName" />
+          <TableColumn fx:id="tvprice" prefWidth="75.0" text="PriceMedic" />
+        </columns>
+      </TableView>
+      <VBox layoutX="10.0" layoutY="18.0" prefHeight="17.0" prefWidth="40.0" />
+      <TableView fx:id="tvanalysis" layoutX="40.0" layoutY="142.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="nameanalyse" prefWidth="103.0" text="NameAnaly" />
+          <TableColumn fx:id="priceanalyse" prefWidth="96.0" text="PriceAnaly" />
+        </columns>
+      </TableView>
+      <Label layoutX="450.0" layoutY="53.0" text="Search" />
+      <Button fx:id="buttonbuy" layoutX="410.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#buy" text="Buy" />
+      <Button layoutX="99.0" layoutY="350.0" mnemonicParsing="false" text="Book an app" />
+   </children>
+</AnchorPane>

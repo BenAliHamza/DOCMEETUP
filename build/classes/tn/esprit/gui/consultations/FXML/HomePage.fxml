@@ -49,7 +49,7 @@
                   <Font name="Bauhaus 93" size="18.0" />
                </font>  
             </Button>
-            <Button layoutX="7.0" layoutY="489.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="198.0" text="Nos doctors">
+            <Button fx:id="followUp" layoutX="7.0" layoutY="489.0" mnemonicParsing="false" onAction="#onFollowUp" prefHeight="31.0" prefWidth="198.0" text="Follow UP">
                <font>
                   <Font name="Bauhaus 93" size="18.0" />
                </font>
