@@ -5,6 +5,7 @@
  */
 package tn.esprit.entities;
 
+import tn.esprit.tools.Role;
 
 import java.util.Date;
 
@@ -33,6 +34,16 @@ public class User {
     public User() {
     }
 
+    public User(int user_id, String email, String password, String username, Role role, String first_name, String last_name) {
+        this.user_id = user_id;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.role = role;
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+    
     public User(String email, String password, String username,Role role, String first_name, String last_name, Date birthdate, String address_line1, String address_line2, String city, int postal_code,  int phone, String profile_picture_url) {
         this.email = email;
         this.password = password;

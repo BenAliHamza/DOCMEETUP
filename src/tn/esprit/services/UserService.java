@@ -12,8 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import tn.esprit.entities.Role;
+import javafx.scene.control.Alert;
+import tn.esprit.tools.Role;
 import tn.esprit.entities.User;
+import tn.esprit.gui.consultations.Consultations;
 import tn.esprit.tools.MaConnexion;
 /**
  *
@@ -26,34 +28,51 @@ import tn.esprit.tools.MaConnexion;
     public UserService() {
         cnx= MaConnexion.getInstance().getCnx();
     }
+    public boolean  isEmail(String email ) {
+            String sql = "SELECT * FROM user WHERE email = ?";
+            ResultSet rs ; 
+            try {
+            PreparedStatement st = cnx.prepareStatement(sql);
+            st = cnx.prepareStatement(sql);
+            st.setString(1, email);
+            rs = st.executeQuery();
+              return rs.next();
+            }catch( Exception e){
+                System.out.println(e.getMessage());
+                            return false; 
+        }
+
+    }
     //@Override
     public void Create(User u){
-       String sql="insert into user(user_id,email,password,username,first_name,last_name,birthdate,address_line1,address_line2,city,postal_code,phone,profile_picture_url,role) values"
-                 + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+       String sql="insert into user(email,password,username,first_name,last_name,role) values"
+                 + "(?,?,?,?,?,?)";
         try {
             PreparedStatement st = cnx.prepareStatement(sql);
-            st.setInt(1, u.getUser_id());
-            st.setString(2, u.getEmail());
-            st.setString(3, u.getPassword());
-            st.setString(4, u.getUsername());
-            st.setString(5, u.getFirst_name());
-            st.setString(6, u.getLast_name());
-            st.setDate(7,new java.sql.Date(u.getBirthdate().getTime()));
-            st.setString(8, u.getAddress_line1());
-            st.setString(9,u.getAddress_line2());
-            st.setString(10,u.getCity());
-            st.setString(11,u.getState());
-            st.setInt(12,u.getPostal_code());
-            st.setString(13,u.getCountry());
-            st.setInt(14,u.getPhone());
-            st.setString(15,u.getProfile_picture_url());
-            st.setString(16, u.getRole().name());     
+            st.setString(1, u.getEmail());
+            st.setString(2, u.getPassword());
+            st.setString(3, u.getUsername());
+            st.setString(4, u.getFirst_name());
+            st.setString(5, u.getLast_name());
+            st.setString(6, u.getRole().name());     
             
             st.executeUpdate();
-            System.out.println("User Add");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Registration");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Le compte est cré");
+                        alert.showAndWait();
+                        
+            }
+            
+                 catch (SQLException ex) {
+                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Registration Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText(ex.getMessage());
+                        alert.showAndWait();
+                    System.out.println(ex.getMessage());
+                }
     } 
     
     //@Override
@@ -66,7 +85,7 @@ import tn.esprit.tools.MaConnexion;
             
             ResultSet rs= st.executeQuery(sql);
             while(rs.next()){
-                User u = new User(rs.getInt("user_id"),rs.getString("email"),rs.getString("password"),rs.getString("username"),Role.valueOf(rs.getString("role")),
+                User u = new User(rs.getInt("user_id"),rs.getString("email"),rs.getString("password"),rs.getString("username"),(rs.getString("role")),
                         rs.getString("first_name"),rs.getString("last_name"),rs.getDate("birthdate"),rs.getString("address_line1"),rs.getString("address_line2"),rs.getString("city")
                         ,rs.getInt("postal_code"),rs.getInt("phone"),rs.getString("profile_picture_url"));
                 Users.add(u);
@@ -76,7 +95,36 @@ import tn.esprit.tools.MaConnexion;
         }
         return Users;
     }
+   public int login(String email, String password) {
+        int userId = -1;
+        try  {
+            String query = "SELECT user_id FROM user WHERE email = ? AND password = ?";
+            PreparedStatement statement = cnx.prepareStatement(query);
+            statement.setString(1, email);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+              
 
+
+            if (resultSet.next()) {
+                userId = resultSet.getInt("user_id");
+                
+            }else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("login");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Le mots de passe ou l'email est inccorecte.");
+                        alert.showAndWait();
+            }
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("login");
+                        alert.setHeaderText(null);
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
+        }
+        return userId;
+    }
     //@Override
     public void Update(User u) {
         String sql= "update user "
@@ -136,38 +184,31 @@ import tn.esprit.tools.MaConnexion;
             System.out.println(ex.getMessage());
         }
     }
-    public User SearchbyId(int id) {
-        User u= new User();
-        try {
-           
-            String sql="select * from user where user_id= "+id;
-            System.out.println(sql);
-            Statement st = cnx.createStatement();
-            ResultSet rs= st.executeQuery(sql);
-             while(rs.next()){
-            System.out.println(rs);
-            
-                u = new User(rs.getInt("user_id"),
+        public User SearchById(int id) {
+            User u = null;
+            try {
+                String sql = "SELECT * FROM user WHERE user_id = " + id;
+                System.out.println(sql);
+                Statement st = cnx.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+
+                if (rs.next()) {
+                    u = new User(
+                        rs.getInt("user_id"),
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("username"),
-                        Role.valueOf(rs.getString("role")),
+                        Role.valueOf(rs.getString("role")), // Assuming Role is an enum
                         rs.getString("first_name"),
-                        rs.getString("last_name"),
-                        rs.getDate("birthdate"),
-                        rs.getString("address_line1"),
-                        rs.getString("address_line2"),
-                        rs.getString("city"),
-                        rs.getInt("postal_code"),
-                        rs.getInt("phone"),
-                        rs.getString("profile_picture_url"));
-             }
-             } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+                        rs.getString("last_name")
+                    );
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            return u;
         }
-        return u;
-        
-}
+
 
     @Override
     public int ajouter(User t) {

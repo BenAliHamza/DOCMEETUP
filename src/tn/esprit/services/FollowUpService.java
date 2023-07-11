@@ -108,7 +108,7 @@ String sql="insert into followup(followup_id,user_id,date,blood_pressure,heart_r
             ResultSet rs= st.executeQuery(sql);
             while(rs.next()){
                 FollowUp f = new FollowUp(rs.getInt("followup_id" ),
-                        us.SearchbyId(rs.getInt("user_id")),
+                        us.SearchById(rs.getInt("user_id")),
                         rs.getDate("date"), 
                         rs.getString("blood_pressure"),
                         rs.getInt("heart_rate"),
@@ -135,7 +135,7 @@ String sql="insert into followup(followup_id,user_id,date,blood_pressure,heart_r
             while (rs.next()){
                 
           FollowUp f = new FollowUp(rs.getInt("followup_id" ),
-                        us.SearchbyId(rs.getInt("user_id")),
+                        us.SearchById(rs.getInt("user_id")),
                         rs.getDate("date"), 
                         rs.getString("blood_pressure"),
                         rs.getInt("heart_rate"),
@@ -181,7 +181,7 @@ System.out.println(k.getMessage());         }
            
             UserService us=new UserService();
                 f = new FollowUp(rs.getInt("followup_id"),
-                        us.SearchbyId(rs.getInt("user_id")),
+                        us.SearchById(rs.getInt("user_id")),
                         rs.getDate("date"),
                         rs.getString("blood_pressure"), 
                         rs.getInt("heart_rate"), 
@@ -254,7 +254,7 @@ System.out.println(k.getMessage());         }
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 FollowUp f = new FollowUp(rs.getInt("followup_id"),
-                        us.SearchbyId(rs.getInt("user_id")),
+                        us.SearchById(rs.getInt("user_id")),
                         rs.getDate("date"),
                         rs.getString("blood_pressure"),
                         rs.getInt("heart_rate"),

@@ -14,13 +14,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import tn.esprit.entities.Consulation;
-import tn.esprit.entities.Role;
+import tn.esprit.entities.User;
+import tn.esprit.tools.Role;
+
 /**
  * FXML Controller class
  *
@@ -38,6 +37,7 @@ public class HomePageController implements Initializable {
     Button followUp;
     @FXML
     Button dashboard ; 
+    static private User user;
 
 
     /**
@@ -60,6 +60,17 @@ public class HomePageController implements Initializable {
         ft.setAutoReverse(false);
         ft.play();
     }
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        HomePageController.user = user;
+    }
+
+
+    
     public void loadHomePage() {
         try {
                    homeBackground =  FXMLLoader.load(getClass().getResource("../FXML/Home.fxml"));
@@ -174,7 +185,9 @@ public class HomePageController implements Initializable {
             }
          
         }
-
+        public void getUserConnected(User user) {
+            this.user = user ;
+        }
 
 
 
