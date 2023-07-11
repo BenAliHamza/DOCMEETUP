@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.List_PurchasesController">
+   <children>
+      <Button layoutX="148.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="My Purchases" />
+      <Button fx:id="insuranceprofile" layoutX="253.0" layoutY="8.0" mnemonicParsing="false" text="My Insurance Profile" onAction="#handleInsuranceProfile" />
+      <Button fx:id="listrefunds" layoutX="10.0" layoutY="8.0" mnemonicParsing="false" text="My List of Refunds" onAction="#handleListRefunds" />
+      <Button layoutX="409.0" layoutY="18.0" mnemonicParsing="false" text="My DocMeet-Up App" />
+      <Button layoutX="555.0" layoutY="18.0" mnemonicParsing="false" text="Help" />
+      <TableView layoutX="24.0" layoutY="110.0" prefHeight="249.0" prefWidth="564.0">
+         <columns>
+            <TableColumn prefWidth="102.33334350585938" text="Date Purchases" />
+            <TableColumn prefWidth="118.99996948242188" text="Product" />
+            <TableColumn minWidth="0.0" prefWidth="87.66668701171875" text="Product Cost" />
+            <TableColumn minWidth="0.0" prefWidth="98.3333740234375" text="Refunded (Y/N)" />
+            <TableColumn minWidth="0.0" prefWidth="61.0" text="Units" />
+            <TableColumn prefWidth="103.3333740234375" text="Purchase_id" />
+         </columns>
+      </TableView>
+      <Text layoutX="48.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="529.0" />
+      <Button layoutX="489.0" layoutY="367.0" mnemonicParsing="false" text="Add Purchsases" />
+   </children>
+</AnchorPane>
