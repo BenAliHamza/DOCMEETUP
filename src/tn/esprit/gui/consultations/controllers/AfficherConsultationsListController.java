@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import tn.esprit.entities.User;
 import tn.esprit.gui.consultations.Consultations;
 
 public class AfficherConsultationsListController implements Initializable {
@@ -33,6 +34,7 @@ public class AfficherConsultationsListController implements Initializable {
     @FXML 
     Button newConsBtn ; 
     private int  consultationId ; 
+    private User user ; 
 
     private final ConsulationService consultationService = new ConsulationService();
 
@@ -90,6 +92,14 @@ public class AfficherConsultationsListController implements Initializable {
     public void setConsultationId(int consultationId) {
         this.consultationId = consultationId;
         loadConsultationInformation(consultationId); 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
        public void loadConsultationInformation(int id ) {
         try {

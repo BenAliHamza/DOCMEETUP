@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
-    private static  String  title = "Home Page" ; 
+    private static  String  title = "Home Page" ;
     @Override
     public void start(Stage primaryStage) {     
         loadLogin(primaryStage);

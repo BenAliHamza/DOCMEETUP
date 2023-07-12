@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import tn.esprit.tools.Role;
 import tn.esprit.entities.User;
 import tn.esprit.gui.consultations.Consultations;
+import tn.esprit.gui.consultations.controllers.HomePageController;
 import tn.esprit.tools.MaConnexion;
 /**
  *
@@ -23,10 +24,13 @@ import tn.esprit.tools.MaConnexion;
  */
     public class UserService implements IService<User>{
     Connection cnx;
+    User user ;
     
 
     public UserService() {
         cnx= MaConnexion.getInstance().getCnx();
+        user = HomePageController.getUser();
+       
     }
     public boolean  isEmail(String email ) {
             String sql = "SELECT * FROM user WHERE email = ?";
@@ -80,9 +84,8 @@ import tn.esprit.tools.MaConnexion;
          List<User> Users = new ArrayList<>();
         try {
            
-            String sql="select * from user";
+            String sql="select * from user where user_id = " + user.getUser_id();
             Statement st = cnx.createStatement();
-            
             ResultSet rs= st.executeQuery(sql);
             while(rs.next()){
                 User u = new User(rs.getInt("user_id"),rs.getString("email"),rs.getString("password"),rs.getString("username"),(rs.getString("role")),
@@ -187,8 +190,21 @@ import tn.esprit.tools.MaConnexion;
         public User SearchById(int id) {
             User u = null;
             try {
-                String sql = "SELECT * FROM user WHERE user_id = " + id;
-                System.out.println(sql);
+                String sql ; 
+                switch(user.getRole()){
+                    case patient:
+                         sql= "SELECT * FROM user WHERE patient_id = " + id;
+                          break;
+
+                    case doctor:
+                       sql= "SELECT * FROM user WHERE doctor_id = " + id;
+                        break;
+
+                    default:
+                         sql= "SELECT * FROM user WHERE doctor_id = " + -1;
+                        break;
+                     
+                }
                 Statement st = cnx.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 

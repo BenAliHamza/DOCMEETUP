@@ -80,10 +80,9 @@ public class ConsulationService  implements  IService<Consulation>  {
         public List<Consulation> afficher() {
              List<Consulation> Consulations = new ArrayList<>();
             try {
-
-                String sql="select * from consultation";
+                String sql="select * from consultation where id ";
                 Statement st = cnx.createStatement();
-
+                
                 ResultSet rs= st.executeQuery(sql);
                 while(rs.next()){
                     Consulation consulation = new Consulation(rs.getInt("consultation_id"),rs.getInt("doctor_id"),rs.getInt("patient_id") , rs.getBoolean("isPayed") , rs.getBoolean("isPrescription") , rs.getDouble("price"), 

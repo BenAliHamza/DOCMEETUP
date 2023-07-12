@@ -84,6 +84,7 @@ public class HomePageController implements Initializable {
                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
                    Parent consultationPane = loader.load();
                    AfficherConsultationsListController c = loader.getController();
+                   c.setUser(user);
                    c.populateConsultationsList(); 
                    setNode(consultationPane);
         }catch( Exception e ) {
