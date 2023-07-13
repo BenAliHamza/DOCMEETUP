@@ -102,39 +102,64 @@ public class HomePageController implements Initializable {
     }
     @FXML
       public void loadConsultationList() {
-        try {
-                   FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
-                   Parent consultationPane = loader.load();
-                   AfficherConsultationsListController c = loader.getController();
-                   c.setUser(user);
-                   c.populateConsultationsList(); 
-                   setNode(consultationPane);
-        }catch( Exception e ) {
-            System.out.println(e);
-        }
+             Role role = user.getRole();
+                 switch(role){
+                     case patient:
+                     case doctor:
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
+                        Parent consultationPane = loader.load();
+                        AfficherConsultationsListController c = loader.getController();
+                        c.setUser(user);
+                        c.populateConsultationsList(); 
+                    setNode(consultationPane);
+                    }catch( Exception e ) {
+                        System.out.println(e);
+                    }
+                    break ; 
+                     default:
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Indisponible");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Access denied for " + role.name());
+                        alert.showAndWait(); 
+                 }
+
     }
       public void loadConsultationList(int id ) {
-                 try {
-                   FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
-                   Parent consultationPane = loader.load();
-                   AfficherConsultationsListController c = loader.getController();
-                   c.populateConsultationsList();
-                   c.setUser(user);
-                   c.setConsultationId(id);
-                   setNode(consultationPane);
-                }catch( Exception e ) {
-                    System.out.println(e);
-                }
-     
+                
+                 Role role = user.getRole();
+                 switch(role){
+                     case patient:
+                     case doctor:
+                           try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
+                            Parent consultationPane = loader.load();
+                            AfficherConsultationsListController c = loader.getController();
+                            c.populateConsultationsList();
+                            c.setUser(user);
+                            c.setConsultationId(id);
+                            setNode(consultationPane);
+                         }catch( Exception e ) {
+                             System.out.println(e);
+                         }
+                           break ;
+                     default:
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Indisponible");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Access denied for " + role.name());
+                        alert.showAndWait(); 
+                   }     
       }
 
-    public void CreateNewConsultation() {
+    public void CreateNewConsultation(int patientId) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
             Parent consultationPane = loader.load();
             AjouterConsultationController controller = loader.getController();
             controller.setDoctor(user);
-            User patient = this.us.SearchById(13);
+            User patient = this.us.SearchById(patientId);
             controller.setPatient(patient);
             setNode(consultationPane);
         } catch (Exception e) {
@@ -142,6 +167,7 @@ public class HomePageController implements Initializable {
             e.getMessage();
         }
     }
+    
     public void CreateNewConsultation(Consulation c ) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));

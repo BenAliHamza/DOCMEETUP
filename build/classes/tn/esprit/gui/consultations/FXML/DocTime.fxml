@@ -25,6 +25,7 @@
             </cellValueFactory>
          </TableColumn>
              </columns>    </TableView>
-   <Button fx:id="ValidS" layoutX="31.0" layoutY="340.0" mnemonicParsing="false" onAction="#validS" prefHeight="31.0" prefWidth="358.0" text="change status" />
-   <Button fx:id="back" layoutX="470.0" layoutY="343.0" mnemonicParsing="false" onAction="#myap" prefHeight="31.0" prefWidth="456.0" text="return" />
+   <Button fx:id="ValidS" layoutX="31.0" layoutY="340.0" mnemonicParsing="false" onAction="#validS" prefHeight="31.0" prefWidth="206.0" text="change status" />
+   <Button fx:id="back" layoutX="740.0" layoutY="343.0" mnemonicParsing="false" onAction="#myap" prefHeight="31.0" prefWidth="186.0" text="return" />
+   <Button layoutX="260.0" layoutY="340.0" mnemonicParsing="false" onAction="#createConsultation" prefHeight="31.0" prefWidth="206.0" text="Create consultation" />
 </AnchorPane>

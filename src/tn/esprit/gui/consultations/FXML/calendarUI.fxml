@@ -36,7 +36,7 @@
                  </TableColumn>
              </columns>
          </TableView>
-             <Label layoutX="50" layoutY="20" text="manage your calendar">
+             <Label layoutX="50" layoutY="20" text="Manage your calendar">
          <font>
             <Font name="Bauhaus 93" size="21.0" />
          </font></Label>

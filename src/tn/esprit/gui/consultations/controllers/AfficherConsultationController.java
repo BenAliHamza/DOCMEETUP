@@ -5,8 +5,15 @@
  */
 package tn.esprit.gui.consultations.controllers;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -209,15 +216,119 @@ public class AfficherConsultationController implements Initializable {
 
             }
     }
-     public void download(Consulation c) throws FileNotFoundException, SQLException, com.itextpdf.text.DocumentException {
 
-	
-	/* Close all DB related objects */
-    }
+        @FXML
+        private void download(ActionEvent event) {
+            Document document = new Document();
+            String title = consultation.getpdfTitle();
 
-    @FXML
-    private void download(ActionEvent event) {
-    }
+            try {
+                // Create a file chooser dialog to select the save location
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+                File file = fileChooser.showSaveDialog(new Stage());
+
+                if (file != null) {
+                    // Create a PDF writer
+                    PdfWriter.getInstance(document, new FileOutputStream(file));
+
+                    document.open();
+
+                    // Add the title at the top
+                    Font titleFont = FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLD);
+                    Paragraph titleParagraph = new Paragraph(title, titleFont);
+                    titleParagraph.setAlignment(Element.ALIGN_CENTER);
+                    document.add(titleParagraph);
+
+                    // Add some spacing
+                    document.add(Chunk.NEWLINE);
+
+                    // Create a table to hold the consultation details
+                    PdfPTable table = new PdfPTable(2);
+                    table.setWidthPercentage(100);
+                    table.setSpacingBefore(10f);
+                    table.setSpacingAfter(10f);
+
+                    // Add consultation details to the table
+                    Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
+                    for (int i = 0; i < 7; i++) {
+                        String label;
+                        String value;
+                        if (i == 0) {
+                            label = "Doctor";
+                            value = docId.getText();
+                        } else if (i == 1) {
+                            label = "Patient";
+                            value = patientId.getText();
+                        } else if (i == 2) {
+                            label = "Price";
+                            value = price.getText();
+                        } else if (i == 3) {
+                            label = "Date";
+                            value = date.getText();
+                        } else if (i == 4) {
+                            label = "Facturation";
+                            value = isPayed.getText();
+                        } else if (i == 5) {
+                            label = "Time";
+                            value = time.getText();
+                        } else {
+                            label = "Rapport";
+                            value = rapport.getText();
+                        }
+
+                        PdfPCell labelCell = new PdfPCell(new Phrase(label, cellFont));
+                        PdfPCell valueCell = new PdfPCell(new Phrase(value, cellFont));
+
+                        // Set styles for odd cells (index starts from 0)
+                        if (i % 2 == 0) {
+                            labelCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                            labelCell.setBorderColor(BaseColor.BLUE);
+                            labelCell.setBorderWidth(1f);
+                            labelCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                            valueCell.setBorderColor(BaseColor.BLUE);
+                        }
+                        labelCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        labelCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        labelCell.setPadding(5f);
+                        table.addCell(labelCell);
+                        table.addCell(valueCell);
+                    }
+
+                    // Add the table to the document
+                    document.add(table);
+
+                    // Close the document
+                    document.close();
+
+                    // Show success message
+                    Alert success = new Alert(Alert.AlertType.INFORMATION);
+                    success.setTitle("Download Consultation");
+                    success.setHeaderText(null);
+                    success.setContentText("Consultation downloaded successfully!");
+                    success.showAndWait();
+                }
+            } catch (Exception e) {
+                // Handle exceptions
+                e.printStackTrace();
+
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setTitle("Error");
+                error.setHeaderText(null);
+                error.setContentText("An error occurred while creating the PDF document: " + e.getMessage());
+                error.showAndWait();
+            }
+        }
+
+
+        private PdfPCell createTableCell(String content) {
+            PdfPCell cell = new PdfPCell(new Phrase(content));
+            cell.setBorder(Rectangle.NO_BORDER);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            return cell;
+        }
+
 
     
     

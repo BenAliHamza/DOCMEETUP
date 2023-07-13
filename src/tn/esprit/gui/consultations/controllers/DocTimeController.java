@@ -129,5 +129,26 @@ public class DocTimeController implements Initializable {
     @FXML
     private void row(MouseEvent event) {
     }
+
+    @FXML
+    private void createConsultation(ActionEvent event) {
+         Appointment selectedAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
+         if( selectedAppointment == null )return ; 
+             try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/HomePage.fxml"));
+                Parent root = loader.load();
+                HomePageController ac = loader.getController();
+                Stage stage = (Stage) anchor.getScene().getWindow(); // Replace `button` with your actual button object
+                Scene scene = new Scene(root );
+                stage.setScene(scene);
+                ac.CreateNewConsultation(selectedAppointment.getPatientId());
+                stage.show();
+
+            } catch (IOException ex) {
+                System.out.println(ex);
+                Logger.getLogger(AfficherConsultationsListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         
+    }
     
 }

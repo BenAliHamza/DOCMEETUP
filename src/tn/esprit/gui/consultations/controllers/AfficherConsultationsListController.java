@@ -150,7 +150,7 @@ public class AfficherConsultationsListController implements Initializable {
         Stage stage = (Stage) consultationDetails.getScene().getWindow(); // Replace `button` with your actual button object
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        ac.CreateNewConsultation();
+        ac.CreateNewConsultation(13);
         stage.show();
 
         } catch (IOException ex) {
