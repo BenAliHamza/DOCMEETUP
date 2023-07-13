@@ -4,21 +4,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AfficherConsultationsListController">
+<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="1093.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AfficherConsultationsListController">
    <children>
-      <ListView fx:id="listView" layoutX="14.0" layoutY="14.0" prefHeight="540.0" prefWidth="392.0" style="-fx-border-radius: 2px; -fx-min-height: 50px;">
+      <ListView fx:id="listView" layoutX="14.0" layoutY="75.0" prefHeight="479.0" prefWidth="584.0" style="-fx-border-radius: 2px; -fx-min-height: 50px;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ListView>
-      <Label layoutX="442.0" layoutY="14.0" prefHeight="49.0" prefWidth="373.0" text="Selectionnez une consultation pour voir les details">
+      <Label layoutX="622.0" layoutY="14.0" prefHeight="49.0" prefWidth="426.0" text="Selectionnez une consultation pour voir les details">
          <font>
             <Font name="Bauhaus 93" size="16.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="consultationDetails" layoutX="434.0" layoutY="69.0" prefHeight="463.0" prefWidth="426.0" style="-fx-background-color: white;" />
-      <Button fx:id="newConsBtn" layoutX="428.0" layoutY="563.0" mnemonicParsing="false" onAction="#createNewConsultation" prefHeight="31.0" prefWidth="426.0" text="create new consultation (Provisoir ) " />
+      <AnchorPane fx:id="consultationDetails" layoutX="622.0" layoutY="73.0" prefHeight="479.0" prefWidth="426.0" style="-fx-background-color: white;" />
+      <Button fx:id="newConsBtn" layoutX="631.0" layoutY="563.0" mnemonicParsing="false" onAction="#createNewConsultation" prefHeight="31.0" prefWidth="426.0" text="create new consultation (Provisoir ) " />
+      <TextField fx:id="search" layoutX="13.0" layoutY="39.0" onKeyPressed="#search" prefHeight="31.0" prefWidth="584.0" promptText="Search " />
    </children>
 </AnchorPane>

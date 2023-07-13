@@ -26,6 +26,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tn.esprit.entities.Consulation;
+import tn.esprit.gui.consultations.Main;
 import tn.esprit.services.ConsulationService;
 
 /**
@@ -71,7 +72,8 @@ public class AfficherConsultationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
                 
-        
+     Main.setTitle("Details de la consultation");
+
     }    
     public int getId() {
            return id;
@@ -81,12 +83,12 @@ public class AfficherConsultationController implements Initializable {
             setConsultation(id);
             this.id = id;
         }
-    public void setDocId(int docId) {
-        this.docId.setText(""+docId);
+    public void setDocId(String docId) {
+        this.docId.setText(docId);
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId.setText(""+patientId); 
+    public void setPatientId( String patientId) {
+        this.patientId.setText(patientId); 
     }
 
     public Consulation getConsultation() {
@@ -97,7 +99,6 @@ public class AfficherConsultationController implements Initializable {
             ConsulationService  cs = new ConsulationService();
             Consulation c = cs.getConsultationById(id);
             this.consultation = c;
-            System.out.println(c.toString());
             
     }
 

@@ -7,6 +7,7 @@ package tn.esprit.entities;
 
 import java.sql.Date;
 import java.sql.Time;
+import tn.esprit.services.UserService;
 
 
 /**
@@ -124,7 +125,11 @@ public class Consulation {
         return "Consulation{" + "consultation_id=" + consultation_id + ", doctor_id=" + doctor_id + ", patient_id=" + patient_id + ", isPayed=" + isPayed + ", isPrescription=" + isPrescription + ", price=" + price + ", date=" + date + ", time=" + time + '}';
     }
     public String getInformationToDisplay(){
-        return "Consulation : Mr/Mme " + patient_id + "  le " + date.toString();
+        UserService us = new UserService();
+        User d = us.SearchById(doctor_id);
+        User pat = us.SearchById(patient_id);
+
+        return "Consulation : Mr/Mme " + pat.getLast_name() + " " + pat.getFirst_name() + " par Doctor : " + d.getLast_name()+" "+ d.getFirst_name()+  "    le " + date.toString();
     }
 
 

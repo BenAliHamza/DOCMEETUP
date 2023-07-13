@@ -187,24 +187,11 @@ import tn.esprit.tools.MaConnexion;
             System.out.println(ex.getMessage());
         }
     }
-        public User SearchById(int id) {
+             public User SearchById(int id) {
             User u = null;
             try {
-                String sql ; 
-                switch(user.getRole()){
-                    case patient:
-                         sql= "SELECT * FROM user WHERE patient_id = " + id;
-                          break;
-
-                    case doctor:
-                       sql= "SELECT * FROM user WHERE doctor_id = " + id;
-                        break;
-
-                    default:
-                         sql= "SELECT * FROM user WHERE doctor_id = " + -1;
-                        break;
-                     
-                }
+                String sql = "SELECT * FROM user WHERE user_id = " + id;
+                System.out.println(sql);
                 Statement st = cnx.createStatement();
                 ResultSet rs = st.executeQuery(sql);
 

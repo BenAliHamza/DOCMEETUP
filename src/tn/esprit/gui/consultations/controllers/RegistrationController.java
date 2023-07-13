@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tn.esprit.entities.User;
+import tn.esprit.gui.consultations.Main;
 import tn.esprit.services.UserService;
 import tn.esprit.tools.Role;
 
@@ -48,6 +49,8 @@ public class RegistrationController  implements Initializable {
     private AnchorPane anchor;
    @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Main.setTitle("Create account");
+
         for (Role role : Role.values()) {
                  MenuItem menuItem = new MenuItem(role.name());
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.SpectateurController">
+   <children>
+      <Label layoutX="98.0" layoutY="181.0" style="-fx-font-size: 18;" text="les participants">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <ChoiceBox fx:id="catColumn" layoutX="231.0" layoutY="179.0" prefHeight="31.0" prefWidth="190.0" />
+      <Label layoutX="98.0" layoutY="143.0" style="-fx-font-size: 18;" text="event_id">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <TextField fx:id="TextEvent" layoutX="231.0" layoutY="144.0" />
+      <Button layoutX="349.0" layoutY="322.0" mnemonicParsing="false" onAction="#AddEvenement" prefHeight="39.0" prefWidth="89.0" text="Valider" />
+      <Label layoutX="172.0" layoutY="24.0" text="Afficher_Participants" textFill="#1815e5">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

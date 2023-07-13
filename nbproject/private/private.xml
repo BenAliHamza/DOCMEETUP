@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/services/UserService.java</file>
             <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/entities/User.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/services/UserService.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/FXML/Home.fxml</file>
             <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/HomePageController.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/FXML/afficher.fxml</file>
             <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/Main.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/LoginController.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/RegistrationController.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/Consultations.java</file>
-            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/FXML/login.fxml</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/services/EvenementService.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/HomeController.java</file>
+            <file>file:/C:/Users/Hamza/Desktop/JavaApplication1/src/tn/esprit/gui/consultations/controllers/AfficherController.java</file>
         </group>
     </open-files>
 </project-private>

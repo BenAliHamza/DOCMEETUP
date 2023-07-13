@@ -8,6 +8,8 @@ package tn.esprit.gui.consultations.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import tn.esprit.entities.Consulation;
 import tn.esprit.entities.User;
+import tn.esprit.services.UserService;
 import tn.esprit.tools.Role;
 
 /**
@@ -31,13 +34,17 @@ public class HomePageController implements Initializable {
     @FXML
     AnchorPane  holderPanel ;
     AnchorPane  homeBackground ;
-     @FXML
-    Button btnConsultation;
+     Button btnConsultation;
       @FXML
     Button followUp;
     @FXML
     Button dashboard ; 
     static private User user;
+    private UserService us ; 
+    @FXML
+    private Button consultation;
+    @FXML
+    private Button out;
 
 
     /**
@@ -46,7 +53,7 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+         us = new UserService();
         loadHomePage(); 
     }    
     private void setNode(Node node ) {
@@ -71,6 +78,7 @@ public class HomePageController implements Initializable {
 
 
     
+    @FXML
     public void loadHomePage() {
         try {
                    homeBackground =  FXMLLoader.load(getClass().getResource("../FXML/Home.fxml"));
@@ -79,6 +87,15 @@ public class HomePageController implements Initializable {
             System.out.println(e);
         }
     }
+      public void loadEvents() {
+        try {
+                   homeBackground =  FXMLLoader.load(getClass().getResource("../FXML/afficher.fxml"));
+                   setNode(homeBackground);
+        }catch( Exception e ) {
+            System.out.println(e);
+        }
+    }
+    @FXML
       public void loadConsultationList() {
         try {
                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
@@ -96,7 +113,8 @@ public class HomePageController implements Initializable {
                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AfficherConsultationsList.fxml"));
                    Parent consultationPane = loader.load();
                    AfficherConsultationsListController c = loader.getController();
-                   c.populateConsultationsList(); 
+                   c.populateConsultationsList();
+                   c.setUser(user);
                    c.setConsultationId(id);
                    setNode(consultationPane);
                 }catch( Exception e ) {
@@ -109,9 +127,10 @@ public class HomePageController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AjouterConsultation.fxml"));
             Parent consultationPane = loader.load();
-            AjouterConsultationController controller = loader.getController();        
-            controller.setDocId(2);
-            controller.setPatientId(1);
+            AjouterConsultationController controller = loader.getController();
+            controller.setDoctor(user);
+            User patient = this.us.SearchById(13);
+            controller.setPatient(patient);
             setNode(consultationPane);
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,6 +150,7 @@ public class HomePageController implements Initializable {
         }
     }
 
+    @FXML
           public void onFollowUp() {
             Role role  = Role.pharmacy  ; 
             String url ; 
@@ -189,6 +209,12 @@ public class HomePageController implements Initializable {
         public void getUserConnected(User user) {
             this.user = user ;
         }
+
+    @FXML
+    private void logout(ActionEvent event) {
+            Platform.exit();
+            System.exit(0);
+    }
 
 
 

@@ -23,9 +23,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            Consulation  consulation = new Consulation(  1 , 2 ,  60.00 ,  new Date(System.currentTimeMillis()), new Time(System.currentTimeMillis()));
-            ConsulationService cs = new ConsulationService();          
-            cs.ajouter(consulation);
+      
             
      /*       cs.ajouter(consulation);
             int test = consulation.getConsultation_id();

@@ -25,7 +25,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
     import javafx.stage.Stage;
     import tn.esprit.entities.Consulation;
+import tn.esprit.entities.User;
+import tn.esprit.gui.consultations.Main;
     import tn.esprit.services.ConsulationService;
+import tn.esprit.services.UserService;
 
     /**
      * FXML Controller class
@@ -48,16 +51,20 @@ import javafx.scene.layout.AnchorPane;
         private TextArea rapport;
         @FXML
         private ToggleButton toggleButton;
-        private int doctorId ;
-        private int patienttId;
         private Consulation consultation ; 
         private Boolean updateMode =false;
+        private User Doctor; 
+        private User patient;
+        UserService us ; 
 
         /**
          * Initializes the controller class.
          */
         @Override
         public void initialize(URL url, ResourceBundle rb) {
+                 Main.setTitle("Ajout  d'une consultation");
+
+            us = new UserService();
             // TODO
              toggleButton.setStyle("-fx-background-color: red; -fx-cursor: pointer;");
              toggleButton.setText("Not payed");
@@ -112,6 +119,25 @@ import javafx.scene.layout.AnchorPane;
         
     }
 
+    public User getDoctor() {
+        return Doctor;
+    }
+
+    public void setDoctor(User doc) {
+        this.Doctor = doc;
+        this.docId.setText(doc.getLast_name() + " " + doc.getFirst_name());
+    }
+
+    public User getPatient() {
+        return patient;
+    }
+
+    public void setPatient(User patient) {
+        this.patient = patient;
+        this.patientId.setText(patient.getLast_name() + " " + patient.getFirst_name());
+
+    }
+
     public TextField getPrice() {
         return price;
     }
@@ -128,22 +154,6 @@ import javafx.scene.layout.AnchorPane;
         this.btnCreate = btnCreate;
     }
 
-    public int getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public int getPatienttId() {
-        return patienttId;
-    }
-
-    public void setPatienttId(int patienttId) {
-        this.patienttId = patienttId;
-    }
-
 
 
 
@@ -152,12 +162,11 @@ import javafx.scene.layout.AnchorPane;
         private void onAjouteConsultation(ActionEvent event) {
             if(updateMode) {
                 onUpdateConsultation();
-               
                 return; 
             }else {
             boolean toggleState = toggleButton.isSelected();
-            int docId = Integer.parseInt(this.docId.getText());
-            int patientId = Integer.parseInt(this.patientId.getText());
+            int docId = this.Doctor.getUser_id();
+            int patientId = patient.getUser_id();
             Double pricee ; 
             try {
             pricee = Double.parseDouble(this.price.getText());
@@ -198,9 +207,13 @@ import javafx.scene.layout.AnchorPane;
             }
         }
         private void OnUpdateMode() {
+            int id = consultation.getDoctor_id();
+            int idp = consultation.getPatient_id();
+            Doctor = us.SearchById(id);
+            patient= us.SearchById(idp);
             titre.setText("Formulaire de modification consultation");
-            docId.setText(""+consultation.getDoctor_id());
-            patientId.setText(""+ consultation.getPatient_id());
+            docId.setText("Dr :" + Doctor.getLast_name() + " " + Doctor.getFirst_name() );
+            patientId.setText(patient.getLast_name() + " " +  patient.getFirst_name());
             rapport.setText(consultation.getRapport());
             price.setText(""+consultation.getPrice());
             Boolean state = consultation.getIsPayed();
@@ -211,7 +224,8 @@ import javafx.scene.layout.AnchorPane;
                      toggleButton.setText("Payed");
             }
             
-            
+            Main.setTitle("Modifications  d'une consultation");
+
         }
         public void onUpdateConsultation(){
             consultation.setIsPayed(toggleButton.isSelected());
@@ -232,7 +246,8 @@ import javafx.scene.layout.AnchorPane;
             String rap = rapport.getText();
             consultation.setRapport(rap); 
             ConsulationService cs = new ConsulationService();
-            cs.updateConsultation(consultation);            
+            cs.updateConsultation(consultation);   
+            returnToList(consultation.getConsultation_id());
         }
         
         private void returnToList(int id ) {

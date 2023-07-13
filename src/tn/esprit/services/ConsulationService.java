@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Alert;
 import tn.esprit.entities.Consulation;
+import tn.esprit.entities.User;
+import tn.esprit.gui.consultations.controllers.HomePageController;
 import tn.esprit.tools.MaConnexion ;
 
 /**
@@ -22,13 +24,16 @@ import tn.esprit.tools.MaConnexion ;
 public class ConsulationService  implements  IService<Consulation>  {
 
     Connection cnx;
+    User user ; 
 
     public ConsulationService() {
                 cnx= MaConnexion.getInstance().getCnx();
+                user = HomePageController.getUser();
     }
     
     @Override
      public int ajouter(Consulation c) {
+         System.out.println("test");
         String sql = "INSERT INTO consultation (doctor_id, patient_id, isPayed, isPrescription, price, consultation_date, consultation_time, rapport) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -40,7 +45,6 @@ public class ConsulationService  implements  IService<Consulation>  {
             st.setDate(6, new java.sql.Date(c.getTime().getTime()));
             st.setTime(7, new java.sql.Time(c.getDate().getTime()));
             st.setString(8, c.getRapport());
-            st.executeUpdate();
             System.out.println("Consulation added");
             int rowsAffected = st.executeUpdate();
             try (ResultSet generatedKeys = st.getGeneratedKeys()) {
@@ -79,10 +83,25 @@ public class ConsulationService  implements  IService<Consulation>  {
         @Override
         public List<Consulation> afficher() {
              List<Consulation> Consulations = new ArrayList<>();
+             String sql;
+             System.out.println(user.getRole());
+             switch(user.getRole()){
+                 case patient:
+                     sql = "select * from consultation where patient_id ="+ user.getUser_id();
+                     break;
+                 case doctor:
+                    sql = "select * from consultation where doctor_id ="+ user.getUser_id();
+                    break;
+                 default:
+                 sql = "select * from consultation where patient_id = -1";
+                 break;
+
+
+             }
             try {
-                String sql="select * from consultation where id ";
+                System.out.println(sql);
                 Statement st = cnx.createStatement();
-                
+                System.out.println(st);
                 ResultSet rs= st.executeQuery(sql);
                 while(rs.next()){
                     Consulation consulation = new Consulation(rs.getInt("consultation_id"),rs.getInt("doctor_id"),rs.getInt("patient_id") , rs.getBoolean("isPayed") , rs.getBoolean("isPrescription") , rs.getDouble("price"), 
@@ -159,8 +178,6 @@ public class ConsulationService  implements  IService<Consulation>  {
             statement.setTime(7, new java.sql.Time(consultation.getDate().getTime()));
             statement.setString(8 , consultation.getRapport()); 
             statement.setInt(9, consultation.getConsultation_id());
-            System.out.println(sql);
-            System.out.println(statement);
             statement.executeUpdate();
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {

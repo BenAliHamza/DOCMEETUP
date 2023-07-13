@@ -33,7 +33,9 @@ public class User {
 
     public User() {
     }
-
+    public User(String userName) {
+        this.username =username;
+    }
     public User(int user_id, String email, String password, String username, Role role, String first_name, String last_name) {
         this.user_id = user_id;
         this.email = email;
@@ -159,6 +161,10 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public void setRole(Role role) {

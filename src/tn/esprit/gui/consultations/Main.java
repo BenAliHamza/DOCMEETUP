@@ -21,9 +21,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     private static  String  title = "Home Page" ;
+    private static Stage ps ; 
     @Override
     public void start(Stage primaryStage) {     
         loadLogin(primaryStage);
+        ps = primaryStage ; 
         
     }
 
@@ -33,8 +35,13 @@ public class Main extends Application {
 
     public static void setTitle(String title) {
         title = title;
+        changeTitle(title);
     }
-
+    public static void changeTitle(String newTitle) {
+        title = newTitle;
+        Stage stage = (Stage) ps.getScene().getWindow();
+        stage.setTitle(newTitle);
+    }
     /**
      * @param args the command line arguments
      */
@@ -45,7 +52,7 @@ public class Main extends Application {
               Parent root; 
         try {
             root = FXMLLoader.load(getClass().getResource("./FXML/login.fxml"));
-            Scene scene = new  Scene(root, 1084, 650);
+            Scene scene = new  Scene(root, 1284, 650);
             primaryStage.setTitle("Login Page");
             primaryStage.setScene(scene);
             primaryStage.show();

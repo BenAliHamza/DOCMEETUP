@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AfficherController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="68.0" layoutY="166.0" prefHeight="435.0" prefWidth="829.0">
+         <children>
+            <TableView fx:id="tableviewEquipement" layoutX="337.0" layoutY="-40.0" prefHeight="343.0" prefWidth="705.0" style="-fx-background-color: none;">
+               <columns>
+                  <TableColumn fx:id="nomColumn" minWidth="70.0" prefWidth="188.0" text="Nom de l'evenement" />
+                  <TableColumn fx:id="catColumn" minWidth="92.0" prefWidth="182.0" text="Organisateur" />
+                  <TableColumn fx:id="datColumn" minWidth="100.0" prefWidth="162.0" text="Date de l'evenement" />
+                  <TableColumn fx:id="quantColumn" minWidth="50.0" prefWidth="172.0" text="Heure de l'evenement" />
+               </columns>
+               <columnResizePolicy>
+               </columnResizePolicy>
+            </TableView>
+            <Button fx:id="buttonDelete1" layoutX="169.0" layoutY="345.0" mnemonicParsing="false" onAction="#Delete" prefHeight="39.0" prefWidth="107.0" text="Supprimer" textFill="RED" />
+            <Button layoutX="390.0" layoutY="345.0" mnemonicParsing="false" onAction="#Annuler" prefHeight="39.0" prefWidth="89.0" text="Annuler" textFill="RED" />
+            <Button fx:id="Afficher" layoutX="291.0" layoutY="345.0" mnemonicParsing="false" onAction="#AfficherEvenement" prefHeight="39.0" prefWidth="89.0" text="Afficher" textFill="#ff0808" />
+            <TextField fx:id="TextEvent1" layoutX="31.0" layoutY="229.0" />
+            <Button layoutX="939.0" layoutY="375.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="PDF" textFill="RED" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="TextOrganizer" layoutX="99.0" layoutY="242.0" promptText="Id Organisateur" />
+      <Label layoutX="25.0" layoutY="246.0" text="Organizer" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="288.0" text="Event_name" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="326.0" text="Event_date" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="363.0" prefHeight="17.0" prefWidth="89.0" text="Event_time" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TextName" layoutX="99.0" layoutY="284.0" promptText="Nom de l'evenement " />
+      <TextField fx:id="TextTime" layoutX="99.0" layoutY="359.0" promptText="hh:mm:ss" />
+      <DatePicker fx:id="TextDate" layoutX="99.0" layoutY="323.0" prefHeight="25.0" prefWidth="149.0" promptText="dd/mm/aaaa" />
+      <Button layoutX="25.0" layoutY="511.0" mnemonicParsing="false" onAction="#AddEvenement" prefHeight="39.0" prefWidth="89.0" text="Ajouter">
+         <textFill>
+            <RadialGradient centerX="0.4222222222222222" centerY="0.2238095238095238" radius="0.5">
+               <stops>
+                  <Stop color="#ff009e" />
+                  <Stop color="#ff009e" offset="0.007662835249042145" />
+                  <Stop color="RED" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Button>
+      <Button layoutX="129.0" layoutY="511.0" mnemonicParsing="false" onAction="#UpdEvenement" prefHeight="39.0" prefWidth="89.0" text="Modifier" textFill="RED" />
+      <Label alignment="CENTER" layoutX="311.0" layoutY="14.0" text="Bienvenu dans votre Evenement                                          " textFill="RED" textOverrun="CLIP">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="114.0" fitWidth="198.0" layoutX="25.0" layoutY="38.0">
+         <image>
+            <Image url="@../../../pic/ago_downloaded-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ChoiceBox fx:id="catColumn1" layoutX="99.0" layoutY="429.0" prefHeight="31.0" prefWidth="190.0" />
+      <Label layoutX="25.0" layoutY="399.0" prefHeight="17.0" prefWidth="89.0" text="Event_id" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="434.0" prefHeight="17.0" prefWidth="89.0" text="Participants" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TextOrganizer1" layoutX="845.0" layoutY="87.0" promptText="Chercher un evenement" />
+      <Label layoutX="765.0" layoutY="91.0" prefHeight="19.0" prefWidth="76.0" text="Chercher :" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TextEvent" layoutX="102.0" layoutY="201.0" promptText="Id" />
+      <Label layoutX="28.0" layoutY="205.0" text="Event_id" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
