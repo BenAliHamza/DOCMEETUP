@@ -99,5 +99,18 @@ public enum RefundMethod {
     CHEQUE,
     BANK_TRANSFER
 }
+@Override
+    public String toString() {
+        return "Refund{" +
+                "refundId=" + refundId +
+                ", userId=" + userId +
+                ", insuranceProfileId=" + insuranceProfileId +
+                ", refundAmount=" + refundAmount +
+                ", refundStatus=" + refundStatus +
+                ", refundMethod=" + refundMethod +
+                ", refundComments='" + refundComments + '\'' +
+                ", purchaseId=" + purchaseId +
+                '}';
+    }
 
 }

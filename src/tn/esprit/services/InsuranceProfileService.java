@@ -3,6 +3,7 @@ package tn.esprit.services;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public class InsuranceProfileService {
         connection = MaConnexion.getInstance().getCnx();
     }
 
-    public void createInsuranceProfile(InsuranceProfile insuranceProfile) {
+    public boolean createInsuranceProfile(InsuranceProfile insuranceProfile) {
         try {
             String query = "INSERT INTO insuranceprofile (user_id, insurance_type, insurance_cost, insurance_exp_date, insurance_tel, insurance_company, insurance_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -29,12 +30,14 @@ public class InsuranceProfileService {
             statement.setString(6, insuranceProfile.getInsuranceCompany());
             statement.setString(7, insuranceProfile.getInsuranceStatus().name());
 
-            statement.executeUpdate();
-            System.out.println("Insurance profile created successfully.");
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
 
         } catch (SQLException ex) {
             System.out.println("Error creating insurance profile: " + ex.getMessage());
         }
+
+        return false;
     }
 
     public void updateInsuranceProfile(InsuranceProfile insuranceProfile) {
@@ -59,20 +62,39 @@ public class InsuranceProfileService {
         }
     }
 
-    public void deleteInsuranceProfile(int insuranceProfileId) {
-        try {
-            String query = "DELETE FROM insuranceprofile WHERE insuranceprofile_id = ?";
+public boolean deleteInsuranceProfileByEmail(String userEmail) {
+    try {
+        // Retrieve the userId from the user table using the userEmail
+        String userQuery = "SELECT user_id FROM user WHERE email = ?";
+        PreparedStatement userStatement = connection.prepareStatement(userQuery);
+        userStatement.setString(1, userEmail);
+        ResultSet userResultSet = userStatement.executeQuery();
 
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, insuranceProfileId);
+        if (userResultSet.next()) {
+            int userId = userResultSet.getInt("user_id");
 
-            statement.executeUpdate();
-            System.out.println("Insurance profile deleted successfully.");
+            // Delete the insurance profile from the database based on the userId
+            String deleteQuery = "DELETE FROM insuranceprofile WHERE user_id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, userId);
+            int rowsAffected = preparedStatement.executeUpdate();
 
-        } catch (SQLException ex) {
-            System.out.println("Error deleting insurance profile: " + ex.getMessage());
+            // Check if the deletion was successful
+            if (rowsAffected > 0) {
+                return true; // Deletion successful
+            } else {
+                return false; // Deletion failed
+            }
         }
+    } catch (SQLException ex) {
+        System.out.println("Error deleting insurance profile: " + ex.getMessage());
     }
+
+    return false; // Deletion failed
+}
+
+
+
 
     public boolean doesInsuranceProfileExist(int userId) {
         try {
@@ -118,6 +140,22 @@ public class InsuranceProfileService {
         return null;
     }
     
+    public boolean deleteInsuranceProfileByUserId(int userId) {
+    try {
+        String query = "DELETE FROM insuranceprofile WHERE user_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userId);
+
+        int rowsAffected = statement.executeUpdate();
+        return rowsAffected > 0;
+    } catch (SQLException ex) {
+        System.out.println("Error deleting insurance profile: " + ex.getMessage());
+    }
+
+    return false;
+}
+
+
     public InsuranceProfile getInsuranceProfileByEmail(String userEmail) {
     try {
         // Retrieve the userId from the user table using the userEmail

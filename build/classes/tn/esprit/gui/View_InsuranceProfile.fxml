@@ -7,14 +7,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.View_InsuranceProfileController">
     <children>
-        <Button fx:id="listpurchases" layoutX="140.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleListPurchases" prefHeight="25.0" prefWidth="99.0" text="My Purchases" />
-        <Button fx:id="viewinsurance" layoutX="255.0" layoutY="14.0" mnemonicParsing="false" text="My Insurance Profile" />
-        <Button fx:id="listrefunds" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleListRefunds" text="My List of Refunds" />
-        <Button layoutX="401.0" layoutY="14.0" mnemonicParsing="false" text="My DocMeet-Up App" />
-        <Button layoutX="547.0" layoutY="14.0" mnemonicParsing="false" text="Help" />
-        <Button layoutX="346.0" layoutY="350.0" mnemonicParsing="false" text="Modify my Profile" />
-        <Button layoutX="477.0" layoutY="350.0" mnemonicParsing="false" text="Delete my Profile" />
-        <Text fx:id="patientName" layoutX="170.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="124.0" />
+        <Button fx:id="listrefunds" layoutX="477.0" layoutY="299.0" mnemonicParsing="false" onAction="#handleListRefunds" text="My List of Refunds" />
+        <Button layoutX="513.0" layoutY="21.0" mnemonicParsing="false" text="Home Page" />
+        <Button fx:id="deleteProfileButton" layoutX="481.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleDeleteProfile" text="Delete my Profile" />
+        <Text fx:id="patientName" layoutX="35.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="124.0" />
         <Text fx:id="email" layoutX="146.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="341.33331298828125" />
         <Text fx:id="telephone" layoutX="177.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="124.0" />
         <Text fx:id="insurancetype" layoutX="170.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="124.0" />
@@ -26,5 +22,6 @@
         <Label layoutX="45.0" layoutY="241.0" text="Insurance Type" />
         <Label layoutX="45.0" layoutY="277.0" text="Expiration Date" />
         <Label layoutX="45.0" layoutY="312.0" text="Insurance Status" />
+       
     </children>
 </AnchorPane>

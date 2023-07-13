@@ -1,10 +1,15 @@
 package tn.esprit.services;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import tn.esprit.entities.Refund;
+import tn.esprit.entities.Refund.RefundMethod;
+import tn.esprit.entities.Refund.RefundStatus;
 import tn.esprit.tools.MaConnexion;
 
 public class RefundService {
@@ -104,6 +109,49 @@ public class RefundService {
 
         return false;
     }
+   public List<Refund> getRefundsByUserId(int userId) {
+    List<Refund> refunds = new ArrayList<>();
+
+    try {
+        String query = "SELECT * FROM refund WHERE user_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userId);
+
+        try (ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int refundId = resultSet.getInt("refund_id");
+                int insuranceProfileId = resultSet.getInt("insuranceprofile_id");
+                double refundAmount = resultSet.getDouble("refund_amount");
+                RefundStatus refundStatus = RefundStatus.valueOf(resultSet.getString("refund_status"));
+                RefundMethod refundMethod = RefundMethod.valueOf(resultSet.getString("refund_method"));
+                String refundComments = resultSet.getString("refund_comments");
+                int purchaseId = resultSet.getInt("purchase_id");
+                
+                // Create a new Refund object and set its attributes
+                Refund refund = new Refund();
+                refund.setRefundId(refundId);
+                refund.setUserId(userId);
+                refund.setInsuranceProfileId(insuranceProfileId);
+                refund.setRefundAmount(refundAmount);
+                refund.setRefundStatus(refundStatus);
+                refund.setRefundMethod(refundMethod);
+                refund.setRefundComments(refundComments);
+                refund.setPurchaseId(purchaseId);
+
+                refunds.add(refund);
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Error retrieving refunds: " + ex.getMessage());
+    }
+
+    return refunds;
+}
+
+
+
+
+
 
     // Other methods in the RefundService class...
 }

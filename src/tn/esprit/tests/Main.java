@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import tn.esprit.entities.DocMeetupPurchase;
 import tn.esprit.entities.DocMeetupPurchase.ProductType;
 import tn.esprit.entities.InsuranceProfile;
@@ -50,7 +51,30 @@ public class Main {
 
         refundService.deleteRefund(refundIdToDelete);
         
- 
-   
-    }
+
+    
+
+        int userId = 2; // jane.smith@example.com
+
+        // Create an instance of DocMeetupPurchaseService
+        DocMeetupPurchaseService purchaseService = new DocMeetupPurchaseService();
+
+        // Call getPurchasesByUserId(userId) to retrieve the purchases
+        List<DocMeetupPurchase> purchases = purchaseService.getPurchasesByUserId(userId);
+
+        // Display the purchases
+        for (DocMeetupPurchase purchase : purchases) {
+            System.out.println(purchase);
+        }
+        
+             // Call the getRefundsByUserId method and retrieve the list of refunds
+        List<Refund> refunds = refundService.getRefundsByUserId(userId);
+
+        for (Refund refund : refunds) {
+            System.out.println(refund);
+        }
+     }
+     
+
+
 }

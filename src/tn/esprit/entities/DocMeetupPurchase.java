@@ -1,6 +1,7 @@
 package tn.esprit.entities;
 
 import java.util.Date;
+import tn.esprit.entities.Refund.RefundStatus;
 
 public class DocMeetupPurchase {
     private int purchaseId;
@@ -83,9 +84,30 @@ public class DocMeetupPurchase {
         this.numUnits = numUnits;
     }
 
+    public void setRefund(Refund refund) {
+    // Implement the logic to set the refund information in the purchase
+    // For example, you can store the refund status and other details in the purchase object
+    // You can access the refund properties using the `refund` parameter
+    // Example:
+    this.refundedTest = refund.getRefundStatus() == RefundStatus.ACCEPTED;
+}
+
+
     public enum ProductType {
-        MEDICAMENT,
-        ANALYSES,
-        CONSULTATION,
+        medicament,
+        analyses,
+        consultation,
+    }
+     @Override
+    public String toString() {
+        return "DocMeetupPurchase{" +
+                "purchaseId=" + purchaseId +
+                ", userId=" + userId +
+                ", productType=" + productType +
+                ", productCost=" + productCost +
+                ", refundedTest=" + refundedTest +
+                ", purchaseDate=" + purchaseDate +
+                ", numUnits=" + numUnits +
+                '}';
     }
 }

@@ -24,14 +24,21 @@ public class CRUDPurchasesController implements Initializable {
     @FXML
     private TextField cost;
     @FXML
-    private Button createpurchase;
-    @FXML
     private TextField attachmentField;
-    @FXML
     private Button upload;
+     private int userId; // Variable to store the user ID
+    @FXML
+    private Button createPurchaseButton;
+    @FXML
+    private Button uploadButton;
+    
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // Populate the ChoiceBox with enum values
         ObservableList<DocMeetupPurchase.ProductType> productTypes = FXCollections.observableArrayList(DocMeetupPurchase.ProductType.values());
         product.setItems(productTypes);
@@ -45,9 +52,11 @@ public class CRUDPurchasesController implements Initializable {
     }
 
     @FXML
-    private void createDocMeetupPurchase(ActionEvent event) {
-        // Handle create purchase action
-    }
+public void createDocMeetupPurchase(ActionEvent event) {
+    // Your code logic for creating a DocMeetupPurchase
+    // ...
+}
+
 
     @FXML
     private void handleUpload(ActionEvent event) {
