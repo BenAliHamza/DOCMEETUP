@@ -25,7 +25,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import tn.esprit.entities.Analysis;
+import tn.esprit.entities.Laboratory;
 import tn.esprit.services.AnalysisService;
+import tn.esprit.services.LaboratoryService;
 
 
 /**
@@ -168,8 +170,13 @@ private void addanaly(ActionEvent event) {
 
     // Si les contrôles de saisie sont valides, créer l'objet Analysis et l'ajouter à la base de données
     AnalysisService analy = new AnalysisService();
-    Analysis ana = new Analysis(analyname, description, result_type, price);
-    analy.Create(ana);
+        
+        LaboratoryService ls=new LaboratoryService();
+        Laboratory lab=new Laboratory();
+        lab=ls.toLaboratory(HomePageController.getUser());
+       //System.out.println(lab);
+        Analysis ana = new Analysis(lab,analyname, description, result_type, price);
+        analy.Create(ana);
 
     // Actualiser l'affichage des analyses
     showanaly();
@@ -229,7 +236,7 @@ private void showAlert(AlertType alertType, String title, String message, String
         // Actualisation de l'affichage
         showanaly();
         clear();
-        analyService.smsreporting();
+        //analyService.smsreporting();
     }
 }
 
@@ -295,7 +302,7 @@ private void showAlert(AlertType alertType, String title, String message, String
         
          AnalysisService analy = new AnalysisService();
      
-        ObservableList <Analysis> list = analy.Read();
+            ObservableList <Analysis> list = analy.Readbyid(HomePageController.getUser());
         tvanalyname.setCellValueFactory(new PropertyValueFactory<Analysis,String>("analysis_name"));
         tvdescriptionanaly.setCellValueFactory(new PropertyValueFactory<Analysis,String>("description"));
         tvresulttypeanaly.setCellValueFactory(new PropertyValueFactory<Analysis,String>("result_type"));

@@ -8,6 +8,7 @@
 package tn.esprit.entities;
 
 import java.util.Date;
+import tn.esprit.tools.Role;
 
 
 /**
@@ -23,13 +24,47 @@ public class Pharmacy extends User{
     public Pharmacy() {
     }
 
-    public Pharmacy(String pharmacy_name, String tax_registration_number, String email, String password, String username, tn.esprit.entities.Role role, String first_name, String last_name, Date birthdate, String address_line1, String address_line2, String city, String state, int postal_code, String country, int phone, String profile_picture_url) {
+    public Pharmacy(String pharmacy_name, 
+            String tax_registration_number, 
+            String email, 
+            String password, 
+            String username, 
+            Role role, 
+            String first_name,
+            String last_name, 
+            Date birthdate, 
+            String address_line1, 
+            String address_line2, 
+            String city, 
+            String state, 
+            int postal_code, 
+            String country, 
+            int phone, 
+            String profile_picture_url) {
         super(email, password, username, role, first_name, last_name, birthdate, address_line1, address_line2, city, postal_code,  phone, profile_picture_url);
         this.pharmacy_name = pharmacy_name;
         this.tax_registration_number = tax_registration_number;
     }
 
-    public Pharmacy(String pharmacy_name, String tax_registration_number, int user_id, String email, String password, String username, tn.esprit.entities.Role role, String first_name, String last_name, Date birthdate, String address_line1, String address_line2, String city, String state, int postal_code, String country, int phone, String profile_picture_url) {
+    public Pharmacy(
+            String pharmacy_name, 
+            String tax_registration_number, 
+            int user_id, 
+            String email, 
+            String password, 
+            String username, 
+            Role role, 
+            String first_name, 
+            String last_name, 
+            Date birthdate, 
+            String address_line1, 
+            String address_line2, 
+            String city, 
+            
+            int postal_code, 
+            
+            int phone, 
+            String profile_picture_url) {
         super(user_id, email, password, username, role, first_name, last_name, birthdate, address_line1, address_line2, city,  postal_code, phone, profile_picture_url);
         this.pharmacy_name = pharmacy_name;
         this.tax_registration_number = tax_registration_number;
@@ -176,11 +211,11 @@ public class Pharmacy extends User{
         this.profile_picture_url = profile_picture_url;
     }
 
-    public tn.esprit.entities.Role getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(tn.esprit.entities.Role role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

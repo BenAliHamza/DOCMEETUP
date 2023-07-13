@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package tn.esprit.entities;
+import tn.esprit.tools.* ; 
+
 
 
 
@@ -15,6 +17,7 @@ public class Laboratory extends User {
     
     private String laboratory_name;
     private String tax_registration_number ;
+    private Role reee ; 
 
     public Laboratory() {
     }

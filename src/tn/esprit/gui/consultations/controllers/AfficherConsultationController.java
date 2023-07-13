@@ -5,9 +5,19 @@
  */
 package tn.esprit.gui.consultations.controllers;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.print.PrinterException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -17,6 +27,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PageOrientation;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -24,7 +36,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
+import org.apache.pdfbox.printing.Scaling;
 import tn.esprit.entities.Consulation;
 import tn.esprit.gui.consultations.Main;
 import tn.esprit.services.ConsulationService;
@@ -61,6 +78,8 @@ public class AfficherConsultationController implements Initializable {
     private Button delete;
     @FXML 
     private Button download;
+    @FXML
+    private AnchorPane consultationDetail;
     
 
     /**
@@ -190,6 +209,16 @@ public class AfficherConsultationController implements Initializable {
 
             }
     }
+     public void download(Consulation c) throws FileNotFoundException, SQLException, com.itextpdf.text.DocumentException {
+
+	
+	/* Close all DB related objects */
+    }
+
+    @FXML
+    private void download(ActionEvent event) {
+    }
+
     
     
 }

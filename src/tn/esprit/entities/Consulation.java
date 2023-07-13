@@ -132,7 +132,13 @@ public class Consulation {
         return "Consulation : Mr/Mme " + pat.getLast_name() + " " + pat.getFirst_name() + " par Doctor : " + d.getLast_name()+" "+ d.getFirst_name()+  "    le " + date.toString();
     }
 
-
+    public String getpdfTitle(){
+        UserService us = new UserService(); 
+        User d = us.SearchById(this.getDoctor_id());
+        User p = us.SearchById(this.getPatient_id());
+        String titre = "Rapport de la consultation de Mr/mme "+ p.getLast_name();
+        return  titre; 
+    }
    
     
     

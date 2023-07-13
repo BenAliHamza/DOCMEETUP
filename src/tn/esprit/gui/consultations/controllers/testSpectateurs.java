@@ -1,4 +1,4 @@
-package tn.esprit.gui;
+package tn.esprit.gui.consultations.controllers;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -11,7 +11,7 @@ public class testSpectateurs extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        try {
+       /* try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Spectateur.fxml"));
             AnchorPane root = loader.load();
 
@@ -23,7 +23,8 @@ public class testSpectateurs extends Application {
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } 
+*/
     }
 
     public static void main(String[] args) {

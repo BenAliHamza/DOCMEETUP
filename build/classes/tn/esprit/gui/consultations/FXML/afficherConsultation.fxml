@@ -38,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="download" layoutX="260.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="99.0" text="Download">
+      <Button fx:id="download" layoutX="260.0" layoutY="14.0" mnemonicParsing="false" onAction="#download" prefHeight="31.0" prefWidth="99.0" text="Download">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

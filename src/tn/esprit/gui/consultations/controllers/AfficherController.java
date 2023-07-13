@@ -73,6 +73,7 @@ public class AfficherController implements Initializable {
     private TextField TextOrganizer1;
     @FXML
     private AnchorPane anchor;
+    private Evenement se ; 
 
 
 @Override
@@ -102,6 +103,7 @@ private void initializeTableView() {
                TextName.setText(e.getEvent_name());
                 System.out.println(e.getOrganizer().toString());
                TextOrganizer.setText(""+e.getOrganizer().getUser_id());
+               se = selectedEvent ; 
                
             }
         }
@@ -231,11 +233,14 @@ LocalTime eventTime = LocalTime.parse(TextTime.getText());
     TextName.clear();
     TextTime.clear();*/
    try {
-                FXMLLoader loader = new  FXMLLoader(getClass().getResource("../FXML/afficher.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) anchor.getScene().getWindow(); // Replace button with your actual button object
-        Scene scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/HomePage.fxml"));
+        Parent root = loader.load();
+        HomePageController ac = loader.getController();
+        Stage stage = (Stage) anchor.getScene().getWindow(); // Replace `button` with your actual button object
+        Scene scene = new Scene(root );
         stage.setScene(scene);
+        ac.loadEvents();
+        stage.show();
         
         stage.show();
                
@@ -247,7 +252,8 @@ LocalTime eventTime = LocalTime.parse(TextTime.getText());
 
     @FXML
     private void AfficherEvenement(ActionEvent event) {
-       int eventId = Integer.parseInt(TextEvent1.getText());
+        System.out.println(se.toString());
+       int eventId = se.getEvent_id();
     ObservableList<String> participantsList = getParticipants(eventId);
     catColumn1.setItems(participantsList);
    // participantsLabel.setText("Participants: " + participantsList.size());

@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import tn.esprit.entities.Medication;
 import tn.esprit.entities.Pharmacy;
 import tn.esprit.tools.MaConnexion;
+import tn.esprit.entities.User;
 
 
 
@@ -38,10 +39,9 @@ public class MedicationService implements IService<Medication>{
     public void Create(Medication m){
        String sql="insert into medication( pharmacy_id,medication_name,description,additional_information,price,stock) values"
                  + "(?,?,?,?,?,?)";
-        int ad =1;
         try {
             PreparedStatement st = cnx.prepareStatement(sql);
-            st.setInt(1, ad);
+            st.setInt(1, m.getPharmacy().getUser_id());
             st.setString(2, m.getMedication_name());
              st.setString(3, m.getDescription());
             st.setString(4, m.getAdditional_information());
@@ -58,6 +58,32 @@ public class MedicationService implements IService<Medication>{
         }}
     
     
+     public ObservableList<Medication> ReadbyUser(User user) {
+        ObservableList<Medication> list = FXCollections.observableArrayList();
+        String sql = "select * from medication where pharmacy_id = ?";
+        try {
+            PreparedStatement st = cnx.prepareStatement(sql);
+            st.setInt(1, user.getUser_id());
+            try {
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    Medication m = new Medication(
+                            rs.getInt("medication_id"), 
+                            rs.getString("Medication_name"),
+                            rs.getString("Description"), 
+                            rs.getString("Additional_information"), 
+                            rs.getFloat("price"), 
+                            rs.getInt("stock"));
+                    list.add(m);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+    }
     
     public ObservableList<Medication> Read() {
       ObservableList <Medication> list =  FXCollections.observableArrayList();
@@ -107,16 +133,22 @@ public class MedicationService implements IService<Medication>{
     
     
     
-    public void Delete (int id) {
-try {
-            String sql="delete from Medication where medication_id ="+id;
-            Statement ste = cnx.createStatement();
-            ste.executeUpdate(sql);
-            System.out.println("Medication deleted");
+    public void Delete(int id) {
+        String sql = "delete from Medication where medication_id =?";
+        try {
+            PreparedStatement st = cnx.prepareStatement(sql);
+            st.setInt(1, id);
+            try {
+
+                st.executeUpdate();
+                System.out.println("Medication deleted");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }    
+    }
 
  
     public void Update(Medication m) {

@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -45,6 +46,10 @@ public class HomePageController implements Initializable {
     private Button consultation;
     @FXML
     private Button out;
+    @FXML
+    private Button rdv;
+    @FXML
+    private Button pharmacy;
 
 
     /**
@@ -151,13 +156,82 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-          public void onFollowUp() {
-            Role role  = Role.pharmacy  ; 
-            String url ; 
+    public void onFollowUp() {
+            Role role  = user.getRole()  ;
+            String url ;
             switch(role) {
-                case  patient : 
-                    url = "../FXML/Search.fxml" ; 
+                case  patient :
+                    url="../FXML/FollowUserI.fxml";  
+                    try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                                Parent consultationPane = loader.load();
+                                FollowUserIController controller = loader.getController();
+                                setNode(consultationPane);
+                     }catch( Exception e ) {
+                         System.out.println(e);
+                         System.out.println(e.getMessage());
+                     }
+                     break ;
+                case pharmacy :
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Access denied for pharmacy");
+                    alert.showAndWait();
+                       
+                    break ;
+                case laboratory :
+                   
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setTitle("Erreur");
+                    alert1.setHeaderText(null);
+                    alert1.setContentText("Access denied for laboratory");
+                    alert1.showAndWait();
+                    break ;
+                   
+                    case doctor :
+                   
+                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                    alert2.setTitle("Erreur");
+                    alert2.setHeaderText(null);
+                    alert2.setContentText("Under construction");
+                    alert2.showAndWait();
+                    break ;
+                     case insurance :
+                   
+                    Alert alert3 = new Alert(Alert.AlertType.ERROR);
+                    alert3.setTitle("Erreur");
+                    alert3.setHeaderText(null);
+                    alert3.setContentText("Access denied for insurance");
+                    alert3.showAndWait();
+                    break ;
+                default:
+                   
                        try {
+                       
+                        }catch( Exception e ) {
+                            System.out.println(e);
+                            System.out.println(e.getMessage());
+                        }
+                    break ;
+                                       
+            }
+         
+        }
+     
+
+        public void getUserConnected(User user) {
+            this.user = user ;
+        }
+        
+        @FXML
+        private void onPharmacylabo(ActionEvent event) {
+        Role role  = user.getRole()  ;
+            String url ;
+            switch(role) {
+                case  patient :
+                    url = "../FXML/Search.fxml" ;
+             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
                                 Parent consultationPane = loader.load();
                                 SearchController controller = loader.getController();        
@@ -166,9 +240,9 @@ public class HomePageController implements Initializable {
                          System.out.println(e);
                          System.out.println(e.getMessage());
                      }
-                     break ; 
-                case pharmacy : 
-                    url = "../FXML/medic.fxml" ; 
+                     break ;
+                case pharmacy :
+                    url = "../FXML/medic.fxml" ;
                        try {
                        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
                        Parent consultationPane = loader.load();
@@ -178,9 +252,9 @@ public class HomePageController implements Initializable {
                             System.out.println(e);
                             System.out.println(e.getMessage());
                         }
-                    break ; 
-                case laboratory : 
-                    url = "../FXML/analysis.fxml" ; 
+                    break ;
+                case laboratory :
+                    url = "../FXML/analysis.fxml" ;
                        try {
                        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
                        Parent consultationPane = loader.load();
@@ -190,7 +264,7 @@ public class HomePageController implements Initializable {
                             System.out.println(e);
                             System.out.println(e.getMessage());
                         }
-                    break ; 
+                    break ;
                 default:
                     url = "../FXML/Search.fxml" ;
                        try {
@@ -202,18 +276,95 @@ public class HomePageController implements Initializable {
                             System.out.println(e.getMessage());
                         }
                     break ;
-                                        
+                                       
             }
-         
         }
-        public void getUserConnected(User user) {
-            this.user = user ;
-        }
-
     @FXML
     private void logout(ActionEvent event) {
             Platform.exit();
             System.exit(0);
+    }
+
+    @FXML
+    private void toRdv(ActionEvent event) {
+        Role role  = user.getRole()  ;
+            String url ;
+            switch(role) {
+                case  patient :
+                    url = "../FXML/appointmentusingcal.fxml" ;
+             try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                                Parent consultationPane = loader.load();
+                                setNode(consultationPane);
+                     }catch( Exception e ) {
+                         System.out.println(e);
+                         System.out.println(e.getMessage());
+                     }
+                     break ;
+             case  doctor :
+                    url = "../FXML/CalendarUI.fxml" ;
+             try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                                Parent consultationPane = loader.load();
+                                setNode(consultationPane);
+                     }catch( Exception e ) {
+                         System.out.println(e);
+                         System.out.println(e.getMessage());
+                     }
+                     break ;
+             default : 
+                    break ;
+                                       
+            }
+        
+
+    }
+
+    public void toUiPatient() {
+                  try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/AppointmentUI.fxml"));
+        Parent root = loader.load();
+         setNode(root);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    void toAppointment() {
+                         try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/appointmentusingcal.fxml"));
+        Parent root = loader.load();
+         setNode(root);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    void toDocTimeCallender() {
+                           try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/DocTime.fxml"));
+        Parent root = loader.load();
+         setNode(root);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+        void fromDocTimeCallender() {
+                           try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML/calendarUI.fxml"));
+        Parent root = loader.load();
+         setNode(root);
+
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
 

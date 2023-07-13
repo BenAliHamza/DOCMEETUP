@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -45,12 +46,12 @@ public class FollowUpService implements IService<FollowUp>{
     public void Create(FollowUp o) {
 String sql="insert into followup(followup_id,user_id,date,blood_pressure,heart_rate,temperature,weight)"
         + " values(?,?,?,?,?,?,?)";
-        int med = 1;
+        //int med = 1;
         try {
             PreparedStatement st = cnx.prepareStatement(sql);
             st.setInt(1, o.getFollowup_id());
             //st.setInt(2, o.getUser().getUser_id());
-            st.setInt(2, med);
+            st.setInt(2, o.getUser().getUser_id());
             st.setDate(3, new java.sql.Date(o.getDate().getTime()));
             st.setString(4, o.getBlood_pressure());
             st.setInt(5, o.getHeart_rate());
@@ -66,7 +67,7 @@ String sql="insert into followup(followup_id,user_id,date,blood_pressure,heart_r
         }    }
 
     public void Update(FollowUp o) {
-        int med = 1;
+        //int med = 1;
         String sql= "update followup "
                 + "set "
                 +"user_id=?,"
@@ -79,7 +80,7 @@ String sql="insert into followup(followup_id,user_id,date,blood_pressure,heart_r
         try {
             PreparedStatement st = cnx.prepareStatement(sql);
            // st.setInt(1,o.getUser().getUser_id());
-             st.setInt(1, med);
+             st.setInt(1, o.getUser().getUser_id());
             st.setDate(2, new java.sql.Date(o.getDate().getTime()));
             st.setString(3,o.getBlood_pressure());
             st.setInt(4,o.getHeart_rate());
@@ -171,10 +172,11 @@ System.out.println(k.getMessage());         }
 
     public FollowUp SearchbyId(int id) {
         FollowUp f= new FollowUp();
+        String sql="select * from followup where followup_id=?";
+
         try {
-           
-            String sql="select * from followup where followup_id= "+id;
-            Statement st = cnx.createStatement();
+           PreparedStatement st= cnx.prepareStatement(sql);
+            st.setInt(1, id);
             ResultSet rs= st.executeQuery(sql);
              while(rs.next()){
            
@@ -244,13 +246,15 @@ System.out.println(k.getMessage());         }
 	/* Close all DB related objects */
     }
     public ObservableList<FollowUp> listfollowupid(int id) {
+            ObservableList<FollowUp> list = FXCollections.observableArrayList();
+            String sql = "select * from followup where user_id=?";
+            try {
+            PreparedStatement st = cnx.prepareStatement(sql);
+            st.setInt(1, id);
+            try {
 
-        ObservableList<FollowUp> list = FXCollections.observableArrayList();
-        try {
-            String sql = "select * from followup where followup_id=" + id;
-            Statement st = cnx.createStatement();
             UserService us = new UserService();
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 FollowUp f = new FollowUp(rs.getInt("followup_id"),
                         us.SearchById(rs.getInt("user_id")),
@@ -262,6 +266,9 @@ System.out.println(k.getMessage());         }
                 list.add(f);
             }
         } catch (SQLException k) {
+            System.out.println(k.getMessage());
+        }
+            } catch (SQLException k) {
             System.out.println(k.getMessage());
         }
         return list;

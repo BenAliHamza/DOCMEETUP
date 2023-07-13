@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.browniebytes.javafx.control.DateTimePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="521.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.consultations.controllers.AppointmentUIController">
+      <TableView fx:id="appointmentTableView" layoutX="30" layoutY="50" onMouseClicked="#row" prefHeight="300" prefWidth="880.0">
+<columns>
+                 <TableColumn fx:id="descriptiontv" prefWidth="197.0" text="description">
+                     <cellValueFactory>
+                         <PropertyValueFactory property="heure_debut" />
+                     </cellValueFactory>
+                 </TableColumn>
+                 <TableColumn fx:id="statustv" prefWidth="158.0" text="status">
+                     <cellValueFactory>
+                         <PropertyValueFactory property="heure_fin" />
+                     </cellValueFactory>
+                 </TableColumn>
+         <TableColumn fx:id="datetimetv" prefWidth="184.0" text="date and time">
+            <cellValueFactory>
+               <PropertyValueFactory property="heure_fin" />
+            </cellValueFactory>
+         </TableColumn>
+             </columns>    </TableView>
+   
+    <Label layoutX="30" layoutY="20" text="Appointment Details" />
+   
+    <Label layoutX="36.0" layoutY="360.0" text="Calendar ID:" visible="false" />
+    <TextField fx:id="calendarIdTextField" layoutX="120.0" layoutY="356.0" visible="false" />
+   
+    <Label layoutX="360.0" layoutY="360.0" text="Medecin ID:" visible="false" />
+    <TextField fx:id="medecinIdTextField" layoutX="443.0" layoutY="365.0" visible="false" />
+   
+    <Label layoutX="365.0" layoutY="390.0" text="Patient ID:" visible="false" />
+    <TextField fx:id="patientIdTextField" layoutX="443.0" layoutY="386.0" visible="false" />
+   
+    <Label layoutX="35.0" layoutY="390.0" text="Description:" />
+    <TextField fx:id="descriptionTextField" layoutX="286.0" layoutY="385.0" />
+   
+    <Label layoutX="435.0" layoutY="466.0" text="Status:" visible="false" />
+    <CheckBox fx:id="statusCheckBox" layoutX="509.0" layoutY="466.0" visible="false" />
+   
+          <Label layoutX="35.0" layoutY="424.0" text="Appointment DateTime:" />
+   
+    <Button fx:id="addButton" layoutX="30" layoutY="490" onAction="#addAppointment" text="Add" visible="false" />
+    <Button fx:id="updateButton" layoutX="40.0" layoutY="475.0" onAction="#updateAppointment" text="Update" />
+    <Button fx:id="deleteButton" layoutX="136.0" layoutY="475.0" onAction="#deleteAppointment" text="Delete" />
+   <DateTimePicker fx:id="dateTimeTextField" layoutX="286.0" layoutY="419.0" prefHeight="31.0" prefWidth="228.0" />
+   <Button layoutX="809.0" layoutY="472.0" mnemonicParsing="false" onAction="#myap" text="navigate back" />
+   
+</AnchorPane>

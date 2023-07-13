@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import tn.esprit.entities.Medication;
 import tn.esprit.entities.Pharmacy;
 import tn.esprit.services.MedicationService;
+import tn.esprit.services.PharmacyService;
 
 /**
  * FXML Controller class
@@ -136,8 +137,10 @@ public class MedicController implements Initializable {
         alert.showAndWait();
         return;
     }
+        PharmacyService ps=new PharmacyService();
         Pharmacy pharma = new Pharmacy();
-        pharma.setUser_id(1);
+        pharma=ps.toPharmacy(HomePageController.getUser());
+        
     // Si toutes les validations sont passées, créer l'objet Medication et l'ajouter
   //  Medication medica = new Medication(medicname, description, addinfo, price, stock);
     Medication medica = new Medication(pharma,medicname, description, addinfo, price, stock);
@@ -153,8 +156,7 @@ public class MedicController implements Initializable {
     public void showmedic(){
         
          MedicationService medic = new MedicationService();
-     
-        ObservableList <Medication> list = medic.Read();
+        ObservableList <Medication> list = medic.ReadbyUser(HomePageController.getUser());
         tvmedicname.setCellValueFactory(new PropertyValueFactory<Medication,String>("medication_name"));
         tvdescription.setCellValueFactory(new PropertyValueFactory<Medication,String>("description"));
         tvinfo.setCellValueFactory(new PropertyValueFactory<Medication,String>("additional_information"));
@@ -202,7 +204,7 @@ public class MedicController implements Initializable {
         tvmedic.getItems().remove(medi);
         showmedic();
         clear();
-        medic.smsreporting();
+        //medic.smsreporting();
     }
 }
 

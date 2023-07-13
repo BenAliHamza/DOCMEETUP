@@ -34,7 +34,7 @@
                   <Font name="Bauhaus 93" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="7.0" layoutY="354.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="198.0" text="Rendez-vous">
+            <Button fx:id="rdv" layoutX="7.0" layoutY="354.0" mnemonicParsing="false" onAction="#toRdv" prefHeight="31.0" prefWidth="198.0" text="Rendez-vous">
                <font>
                   <Font name="Bauhaus 93" size="18.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Font name="Bauhaus 93" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="7.0" layoutY="445.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="198.0" text="Pharmacy">
+            <Button fx:id="pharmacy" layoutX="7.0" layoutY="445.0" mnemonicParsing="false" onAction="#onPharmacylabo" prefHeight="31.0" prefWidth="198.0" text="Pharmacy/labo">
                <font>
                   <Font name="Bauhaus 93" size="18.0" />
                </font>  

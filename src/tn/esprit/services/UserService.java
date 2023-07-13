@@ -88,7 +88,7 @@ import tn.esprit.tools.MaConnexion;
             Statement st = cnx.createStatement();
             ResultSet rs= st.executeQuery(sql);
             while(rs.next()){
-                User u = new User(rs.getInt("user_id"),rs.getString("email"),rs.getString("password"),rs.getString("username"),(rs.getString("role")),
+                User u = new User(rs.getInt("user_id"),rs.getString("email"),rs.getString("password"),rs.getString("username"),this.convertToRole((rs.getString("role"))),
                         rs.getString("first_name"),rs.getString("last_name"),rs.getDate("birthdate"),rs.getString("address_line1"),rs.getString("address_line2"),rs.getString("city")
                         ,rs.getInt("postal_code"),rs.getInt("phone"),rs.getString("profile_picture_url"));
                 Users.add(u);
@@ -212,7 +212,14 @@ import tn.esprit.tools.MaConnexion;
             return u;
         }
 
-
+        private Role convertToRole(String selectedRole) {
+            for (Role role : Role.values()) {
+                if (role.name().equalsIgnoreCase(selectedRole)) {
+                    return role;
+                }
+            }
+            return null; // Return null or handle the case when the selected role is not found
+        }
     @Override
     public int ajouter(User t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
