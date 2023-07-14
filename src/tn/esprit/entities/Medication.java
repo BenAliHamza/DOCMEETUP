@@ -21,6 +21,11 @@ public class Medication {
     private String additional_information;
     private float price;
     private int stock;
+
+    public Medication(String medication_name, String description) {
+        this.medication_name = medication_name;
+        this.description = description;
+    }
    
 
    

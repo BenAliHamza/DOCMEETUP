@@ -194,14 +194,7 @@ System.out.println(k.getMessage());         }
             System.out.println(ex.getMessage());
         }
         return f;    }
-    
-    
-    
-    
-    
-    
-    
-    
+       
     public void pdf(String blood, String heart, String weight, String emp) throws FileNotFoundException, SQLException, DocumentException {
 
 	       Document my_pdf_report = new Document();
@@ -245,6 +238,7 @@ System.out.println(k.getMessage());         }
 
 	/* Close all DB related objects */
     }
+    
     public ObservableList<FollowUp> listfollowupid(int id) {
             ObservableList<FollowUp> list = FXCollections.observableArrayList();
             String sql = "select * from followup where user_id=?";

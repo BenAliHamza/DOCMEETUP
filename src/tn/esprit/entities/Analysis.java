@@ -22,6 +22,12 @@ public class Analysis {
     public Analysis() {
     }
 
+    public Analysis(String analysis_name, String description, String result_type) {
+        this.analysis_name = analysis_name;
+        this.description = description;
+        this.result_type = result_type;
+    }
+
     public Analysis(int analysis_id, Laboratory laboratory, String analysis_name, String description, String result_type, float price) {
         this.analysis_id = analysis_id;
         this.laboratory = laboratory;

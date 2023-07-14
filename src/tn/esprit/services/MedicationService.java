@@ -18,9 +18,10 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tn.esprit.entities.Medication;
-import tn.esprit.entities.Pharmacy;
+import tn.esprit.entities.Analysis;
 import tn.esprit.tools.MaConnexion;
 import tn.esprit.entities.User;
+import tn.esprit.tools.Role;
 
 
 
@@ -228,9 +229,87 @@ public class MedicationService implements IService<Medication>{
 
     
     
+    public Medication SearchById(int id) {
+       Medication med= new Medication();
+            String sql = "SELECT * FROM medication WHERE medication_id =?";
+            try {
+                PreparedStatement st = cnx.prepareStatement(sql);
+                st.setInt(1, id);
+            try {
+                ResultSet rs = st.executeQuery(sql);
+                if (rs.next()) {
+                    
+                    PharmacyService ps = new PharmacyService();
+                    med=new Medication(
+                        rs.getInt("medication_id"),
+                        ps.toPharmacyid(rs.getInt("pharmacy_id ")),
+                        rs.getString("medication_name"),
+                        rs.getString("description"),
+                        rs.getString("additional_information"),
+                        rs.getFloat("price"),
+                        rs.getInt("stock")
+                    );
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            return med;
+        }
     
-    
-    
+    public ObservableList<Medication> medicationperid(int userId) {
+    ObservableList<Medication> medications = FXCollections.observableArrayList();
+
+    String sql = "SELECT m.Medication_name, m.Description " + "FROM prescription p " + "JOIN medication m ON p.medication_id = m.medication_id " + "WHERE p.patient_id = ?";
+    try {
+        PreparedStatement st = cnx.prepareStatement(sql);
+        st.setInt(1, userId);
+
+        try {
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String medicationName = rs.getString("Medication_name");
+                String medicationDescription = rs.getString("Description");
+
+                Medication medication = new Medication(medicationName, medicationDescription);
+                medications.add(medication);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return medications;
+}
+public ObservableList<Analysis> medicationanalyse(int userId) {
+    ObservableList<Analysis> Analys = FXCollections.observableArrayList();
+
+    String sql = "SELECT a.analysis_name, a.Description, a.result_type FROM prescription p JOIN analysis a ON p.analysis_id = a.analysis_id  WHERE p.patient_id = ?";
+    try {
+        PreparedStatement st = cnx.prepareStatement(sql);
+        st.setInt(1, userId);
+
+        try {
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("analysis_name");
+                String description = rs.getString("Description");
+                String result = rs.getString("result_type");
+
+                Analysis Analysis = new Analysis(name, description,result);
+                Analys.add(Analysis);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return Analys;
+}
     
     
     

@@ -81,7 +81,7 @@ public class searchservice implements IService<Medication>{
 
     
     
-    public ObservableList<Medication> Readall() {
+        public ObservableList<Medication> Readall() {
     ObservableList<Medication> list = FXCollections.observableArrayList();
     try {
         String sql = "SELECT m.medication_id, u.pharmacy_name, m.medication_name, m.description, m.additional_information, m.price, m.stock FROM Medication m INNER JOIN User u ON m.pharmacy_id = u.user_id";

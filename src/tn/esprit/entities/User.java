@@ -87,6 +87,12 @@ public class User {
         this.profile_picture_url = profile_picture_url;
     }
 
+      public User(int user_id, String first_name, String last_name) {
+        this.user_id = user_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+
     public int getUser_id() {
         return user_id;
     }

@@ -217,11 +217,15 @@ public class HomePageController implements Initializable {
                    
                     case doctor :
                    
-                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                    alert2.setTitle("Erreur");
-                    alert2.setHeaderText(null);
-                    alert2.setContentText("Under construction");
-                    alert2.showAndWait();
+                        url="../FXML/FollowDocI.fxml";  
+                             try {
+                                         FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+                                         Parent consultationPane = loader.load();
+                                         setNode(consultationPane);
+                              }catch( Exception e ) {
+                                  System.out.println(e);
+                                  System.out.println(e.getMessage());
+                           }
                     break ;
                      case insurance :
                    

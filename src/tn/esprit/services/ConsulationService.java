@@ -33,7 +33,6 @@ public class ConsulationService  implements  IService<Consulation>  {
     
     @Override
      public int ajouter(Consulation c) {
-         System.out.println("test");
         String sql = "INSERT INTO consultation (doctor_id, patient_id, isPayed, isPrescription, price, consultation_date, consultation_time, rapport) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

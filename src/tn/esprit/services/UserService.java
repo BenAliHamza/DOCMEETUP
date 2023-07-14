@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import tn.esprit.tools.Role;
 import tn.esprit.entities.User;
@@ -220,6 +222,34 @@ import tn.esprit.tools.MaConnexion;
             }
             return null; // Return null or handle the case when the selected role is not found
         }
+         public ObservableList<User> getDoctorPatients(int doctorId) {
+            ObservableList<User> patients = FXCollections.observableArrayList();
+
+            String query = "SELECT a.patientId, u.first_name AS patient_first_name, u.last_name AS patient_last_name " +
+                           "FROM appointment a " +
+                           "JOIN user u ON a.patientId = u.user_id " +
+                           "WHERE a.medecinId = ?";
+
+            try {
+                PreparedStatement statement = MaConnexion.getInstance().getCnx().prepareStatement(query);
+                statement.setInt(1, doctorId);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    int patientId = resultSet.getInt("patientId");
+                    String patientFirstName = resultSet.getString("patient_first_name");
+                    String patientLastName = resultSet.getString("patient_last_name");
+
+                    User patient = new User(patientId, patientFirstName, patientLastName);
+                    patients.add(patient);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+    return patients;
+}
+ 
     @Override
     public int ajouter(User t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
