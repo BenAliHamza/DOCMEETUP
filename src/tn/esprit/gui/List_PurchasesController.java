@@ -18,8 +18,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tn.esprit.entities.DocMeetupPurchase;
 import tn.esprit.services.DocMeetupPurchaseService;
+//import tn.esprit.gui.Add_PurchasesController;
 
 public class List_PurchasesController implements Initializable {
+    private Stage previousStage;
+
+   public void setPreviousStage(Stage stage) {
+    previousStage = stage;
+}
 
     @FXML
     private TableView<DocMeetupPurchase> purchasesTable;
@@ -65,33 +71,26 @@ public class List_PurchasesController implements Initializable {
         purchasesTable.getItems().setAll(purchases);
     }
 
-    public void handleReturnToInsuranceProfile(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("View_InsuranceProfile.fxml"));
-            Parent root = loader.load();
+    @FXML
+public void handleInsuranceProfile3(ActionEvent event) {
+    // Close the current stage
+    Stage currentStage = (Stage) returnButton.getScene().getWindow();
+    currentStage.close();
 
-            // Pass the user ID to the View_InsuranceProfileController
-            View_InsuranceProfileController profileController = loader.getController();
-            profileController.setUserId(userId);
-
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) returnButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Error loading View_InsuranceProfile.fxml: " + e.getMessage());
-        }
+    // Close the previous stage
+    if (previousStage != null) {
+        previousStage.close();
     }
+}
+
 
     @FXML
-    public void handleAddPurchase(ActionEvent event) {
+public void handleAddPurchase(ActionEvent event) {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Create_Purchases.fxml"));
-        Parent root = loader.load();
-
-        // Pass the user ID to the CRUDPurchaseController
-        CRUDPurchasesController createPurchaseController = loader.getController();
-        createPurchaseController.setUserId(userId);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/gui/Create_Purchases.fxml"));
+       Parent root = loader.load();
+       Create_PurchasesController create_purchasesController = loader.getController();
+        create_purchasesController.setUserId(userId);
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -101,6 +100,7 @@ public class List_PurchasesController implements Initializable {
         System.out.println("Error loading Create_Purchase.fxml: " + e.getMessage());
     }
 }
+
 
 
 }

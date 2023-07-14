@@ -186,4 +186,6 @@ public class View_InsuranceProfileController implements Initializable {
     public String getUserEmail() {
         return userEmail;
     }
+    
+
 }

@@ -73,8 +73,36 @@ public class Main {
         for (Refund refund : refunds) {
             System.out.println(refund);
         }
-     }
+        
+        
+        DocMeetupPurchase purchase = new DocMeetupPurchase();
+    purchase.setUserId(2);
+    purchase.setProductType(DocMeetupPurchase.ProductType.medicament);
+    purchase.setProductCost(100);
+    purchase.setNumUnits(5);
+
+    // Create an instance of DocMeetupPurchaseService
+    DocMeetupPurchaseService purchaseService2 = new DocMeetupPurchaseService();
+
+    // Call the createDocMeetupPurchase method
+    purchaseService2.createDocMeetupPurchase(purchase);
+    
+    
+
+    // Define the refund method and user ID
+    RefundMethod refundMethod = RefundMethod.CASH;
+    int userId3 = 123; // Replace with the actual user ID
+
+    // Call the create_Refund method
+    boolean created = refundService.create_Refund(refundMethod, userId3);
+
+    // Check if the refund was successfully created
+    if (created) {
+        System.out.println("Refund created successfully.");
+    } else {
+        System.out.println("Failed to create refund.");
+    }
      
 
-
+}
 }

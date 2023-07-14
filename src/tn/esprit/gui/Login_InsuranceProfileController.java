@@ -38,7 +38,7 @@ public class Login_InsuranceProfileController implements Initializable {
 
 
     @FXML
-private void handleViewInsurance(ActionEvent event) {
+public void handleViewInsurance(ActionEvent event) {
     String userEmail = email.getText();
     try {
         UserService userService = new UserService();

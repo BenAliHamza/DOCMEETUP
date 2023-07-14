@@ -21,25 +21,48 @@ public class DocMeetupPurchaseService {
         connection = MaConnexion.getInstance().getCnx();
     }
 
+//    public void createDocMeetupPurchase(DocMeetupPurchase docMeetupPurchase) {
+//        try {
+//            String query = "INSERT INTO docmeetup_purchases (user_id, product_type, product_cost, refunded_test, purchase_date, num_units) VALUES (?, ?, ?, ?, ?, ?)";
+//
+//            PreparedStatement statement = connection.prepareStatement(query);
+//            statement.setInt(1, docMeetupPurchase.getUserId());
+//            statement.setString(2, docMeetupPurchase.getProductType().toString());
+//            statement.setInt(3, docMeetupPurchase.getProductCost());
+////            statement.setBoolean(4, docMeetupPurchase.isRefundedTest());
+////            statement.setTimestamp(5, (Timestamp) docMeetupPurchase.getPurchaseDate());
+//            statement.setInt(6, docMeetupPurchase.getNumUnits());
+//
+//            statement.executeUpdate();
+//            System.out.println("DocMeetup purchase created successfully.");
+//
+//        } catch (SQLException ex) {
+//            System.out.println("Error creating DocMeetup purchase: " + ex.getMessage());
+//        }
+//    }
+
     public void createDocMeetupPurchase(DocMeetupPurchase docMeetupPurchase) {
-        try {
-            String query = "INSERT INTO docmeetup_purchases (user_id, product_type, product_cost, refunded_test, purchase_date, num_units) VALUES (?, ?, ?, ?, ?, ?)";
+    try {
+        String query = "INSERT INTO docmeetup_purchases (user_id, product_type, product_cost, num_units) VALUES (?, ?, ?, ?)";
 
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, docMeetupPurchase.getUserId());
-            statement.setString(2, docMeetupPurchase.getProductType().toString());
-            statement.setInt(3, docMeetupPurchase.getProductCost());
-            statement.setBoolean(4, docMeetupPurchase.isRefundedTest());
-            statement.setTimestamp(5, (Timestamp) docMeetupPurchase.getPurchaseDate());
-            statement.setInt(6, docMeetupPurchase.getNumUnits());
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, docMeetupPurchase.getUserId());
+        statement.setString(2, docMeetupPurchase.getProductType().toString());
+        statement.setInt(3, docMeetupPurchase.getProductCost());
+//        statement.setBoolean(4, docMeetupPurchase.isRefundedTest());
+//        statement.setTimestamp(5, new Timestamp(docMeetupPurchase.getPurchaseDate().getTime()));
+        statement.setInt(4, docMeetupPurchase.getNumUnits());
 
-            statement.executeUpdate();
+        int rowsAffected = statement.executeUpdate();
+        if (rowsAffected > 0) {
             System.out.println("DocMeetup purchase created successfully.");
-
-        } catch (SQLException ex) {
-            System.out.println("Error creating DocMeetup purchase: " + ex.getMessage());
+        } else {
+            System.out.println("Error creating DocMeetup purchase. No rows affected.");
         }
+    } catch (SQLException ex) {
+        System.out.println("Error creating DocMeetup purchase: " + ex.getMessage());
     }
+}
 
     public void updateDocMeetupPurchase(DocMeetupPurchase docMeetupPurchase) {
         try {

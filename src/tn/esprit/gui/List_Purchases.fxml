@@ -3,9 +3,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.List_PurchasesController">
    <children>
@@ -39,9 +40,14 @@
             </TableColumn>
          </columns>
       </TableView>
-      <Button fx:id="returnButton" layoutX="24.0" layoutY="366.0" mnemonicParsing="false" text="Return to My Insurance Profile" />
-      <Button fx:id="addButton" layoutX="454.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleAddPurchase" text="Add another Purchase" />
-      <TextField layoutX="23.0" layoutY="74.0" prefHeight="25.0" prefWidth="564.0" text="List of My DocMeet-Up Purchases:" />
+      <Button fx:id="returnButton" layoutX="24.0" layoutY="366.0" onAction="#handleInsuranceProfile3" mnemonicParsing="false" text="Back to My Refunds" />
+      <Button fx:id="addButton" layoutX="497.0" layoutY="366.0" mnemonicParsing="false" onAction="#handleAddPurchase" text="Add Purchase" />
       <Button layoutX="509.0" layoutY="14.0" mnemonicParsing="false" text="Home Page" />
+      <Text layoutX="24.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of My DocMeet-Up Purchases:" />
+      <Text fill="#040404" layoutX="221.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DocMeet-UP Purchases" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -4,24 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/services/RefundService.java</file>
-            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/Create_InsuranceProfileController.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/List_Purchases.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/View_InsuranceProfileController.java</file>
-            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/entities/Refund.java</file>
-            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/entities/DocMeetupPurchase.java</file>
+            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/Create_PurchasesController.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/View_InsuranceProfile.fxml</file>
-            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/entities/User.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/List_Purchases.fxml</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/List_PurchasesController.java</file>
-            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/CRUDPurchasesController.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/tests/Main.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/List_Refunds.fxml</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/List_RefundsController.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/services/DocMeetupPurchaseService.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/Create_Purchases.fxml</file>
-            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/Login_InsuranceProfileController.java</file>
+            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/MyListofRefunds.java</file>
             <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/Create_Purchases.java</file>
-            <file>file:/C:/Users/siwar/DocMeetUp/src/tn/esprit/gui/View_InsuranceProfile.java</file>
         </group>
     </open-files>
 </project-private>

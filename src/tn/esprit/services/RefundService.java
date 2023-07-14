@@ -148,10 +148,42 @@ public class RefundService {
     return refunds;
 }
 
+public boolean create_Refund(RefundMethod refundMethod, int userId) {
+    // Create a new Refund object
+    Refund refund = new Refund();
+    refund.setRefundMethod(refundMethod);
+    refund.setUserId(userId);
+
+    try {
+        // Prepare the SQL statement
+        String sql = "INSERT INTO refund (user_id, refund_method) VALUES (?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, refund.getUserId());
+        statement.setString(2, refund.getRefundMethod().toString());
+
+        // Execute the query
+        int rowsAffected = statement.executeUpdate();
+
+        // Check if the refund was successfully added to the database
+        if (rowsAffected > 0) {
+            // Return true to indicate successful creation
+            return true;
+        } else {
+            // Return false to indicate failure in creating the refund
+            return false;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Return false to indicate failure in creating the refund
+        return false;
+    }
+}
+
+}
+
 
 
 
 
 
     // Other methods in the RefundService class...
-}

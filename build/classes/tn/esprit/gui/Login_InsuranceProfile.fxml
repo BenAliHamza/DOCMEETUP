@@ -4,12 +4,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.Login_InsuranceProfileController">
    <children>
-      <Label layoutX="109.0" layoutY="156.0" prefHeight="25.0" prefWidth="46.0" text="E-mail" />
-      <TextField fx:id="email" layoutX="172.0" layoutY="156.0" prefHeight="25.0" prefWidth="237.0" />
-      <Button fx:id="View_insurance" layoutX="412.0" layoutY="200.0" mnemonicParsing="false" text="Check my Insurance Profile" onAction="#handleViewInsurance" />
-     <Button fx:id="create_insurance" layoutX="412.0" layoutY="246.0" mnemonicParsing="false" text="Create my Insurance Profile" onAction="#handleCreateInsurance" />
+      <Label layoutX="62.0" layoutY="187.0" prefHeight="25.0" prefWidth="46.0" text="E-mail" />
+      <TextField fx:id="email" layoutX="125.0" layoutY="187.0" prefHeight="25.0" prefWidth="237.0" />
+      <Button fx:id="View_insurance" layoutX="412.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleViewInsurance" text="Check my Insurance Profile" />
+     <Button fx:id="create_insurance" layoutX="411.0" layoutY="307.0" mnemonicParsing="false" onAction="#handleCreateInsurance" text="Create my Insurance Profile" />
+      <Text layoutX="139.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login to My DocMeet-UP insurance Portal" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fontSmoothingType="LCD" layoutX="230.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome !" />
+      <Button layoutX="426.0" layoutY="14.0" mnemonicParsing="false" text="DocMeet-UP HomePage" />
    </children>
 </AnchorPane>

@@ -46,6 +46,8 @@ public class List_RefundsController implements Initializable {
     private TableColumn<Refund, String> refundCommentsColumn;
     @FXML
     private TableColumn<Refund, Integer> purchaseIdColumn;
+    @FXML
+    private Button Refresh;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,27 +77,15 @@ public class List_RefundsController implements Initializable {
     }
 
     @FXML
-    private void handleInsuranceProfile(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("View_InsuranceProfile.fxml"));
-            Parent root = loader.load();
+private void handleInsuranceProfile2(ActionEvent event) {
+    // Close the current stage
+    Stage currentStage = (Stage) insuranceprofile.getScene().getWindow();
+    currentStage.close();
+}
 
-            // Pass the user ID to the View_InsuranceProfileController
-            View_InsuranceProfileController profileController = loader.getController();
-            profileController.setUserId(userId);
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
 
-            // Close or hide the current stage
-            Stage currentStage = (Stage) insuranceprofile.getScene().getWindow();
-            currentStage.close(); // or currentStage.hide();
-        } catch (IOException e) {
-            System.out.println("Error loading View_InsuranceProfile.fxml: " + e.getMessage());
-        }
-    }
+
 
     @FXML
     public void handleListPurchases(ActionEvent event) {
@@ -118,4 +108,11 @@ public class List_RefundsController implements Initializable {
             System.out.println("Error loading List_Purchases.fxml: " + e.getMessage());
         }
     }
+
+    @FXML
+private void Refresh(ActionEvent event) {
+    populateRefunds();
+}
+
+    
 }

@@ -5,18 +5,33 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.CRUDPurchasesController">
-   <children>
-      <Label layoutX="105.0" layoutY="166.0" text="Product" />
-      <Label layoutX="105.0" layoutY="200.0" text="Cost" />
-      <Label layoutX="105.0" layoutY="237.0" text="Units" />
-      <ChoiceBox fx:id="product" layoutX="161.0" layoutY="162.0" prefHeight="25.0" prefWidth="193.0" />
-      <ChoiceBox fx:id="units" layoutX="161.0" layoutY="233.0" prefHeight="25.0" prefWidth="193.0" />
-      <TextField fx:id="cost" layoutX="162.0" layoutY="196.0" prefHeight="25.0" prefWidth="193.0" />
-      <Button fx:id="createPurchaseButton" layoutX="203.0" layoutY="352.0" mnemonicParsing="false" onAction="#createDocMeetupPurchase" text="Add to My Purchases" />
-      <Label layoutX="168.0" layoutY="266.0" prefHeight="41.0" prefWidth="181.0" text="Attach DocMeet-Up Receipt (pdf)" textAlignment="CENTER" wrapText="true" />
-      <TextField fx:id="attachmentField" layoutX="168.0" layoutY="301.0" prefHeight="25.0" prefWidth="99.0" promptText="PDF File" />
-      <Button fx:id="uploadButton" layoutX="274.0" layoutY="301.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Upload" onAction="#handleUpload" />
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.Create_PurchasesController">
+    <children>
+      <Label layoutX="59.0" layoutY="141.0" text="Product" />
+      <Label layoutX="59.0" layoutY="175.0" text="Cost" />
+      <Label layoutX="59.0" layoutY="212.0" text="Units" />
+      <ChoiceBox fx:id="product" layoutX="112.0" layoutY="136.0" prefHeight="25.0" prefWidth="260.0" />
+      <ChoiceBox fx:id="units" layoutX="112.0" layoutY="207.0" prefHeight="25.0" prefWidth="260.0" />
+      <TextField fx:id="cost" layoutX="113.0" layoutY="170.0" prefHeight="25.0" prefWidth="260.0" />
+      <Button fx:id="createPurchaseButton" layoutX="192.0" layoutY="350.0" mnemonicParsing="false" onAction="#createDocMeetupPurchase" text="Add to My Purchases" />
+      <Label layoutX="56.0" layoutY="281.0" prefHeight="41.0" prefWidth="181.0" text="Attach DocMeet-Up Receipt " textAlignment="CENTER" wrapText="true" />
+      <TextField fx:id="attachmentField" layoutX="217.0" layoutY="289.0" prefHeight="25.0" prefWidth="96.0" promptText="PDF File" />
+      <Button fx:id="uploadButton" layoutX="317.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleUpload" prefHeight="25.0" prefWidth="63.0" text="Upload" />
+      <Button fx:id="cancel" layoutX="328.0" layoutY="350.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Text layoutX="95.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Let's Add More Doc-Meet-Up Purchases" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+    <ChoiceBox fx:id="refundMethod" layoutX="259.0" layoutY="241.0" prefHeight="25.0" prefWidth="114.0" />
+      <Label layoutX="59.0" layoutY="233.0" prefHeight="41.0" prefWidth="217.0" text="How do you wish to be Refunded ?" wrapText="true" />
+      <Text layoutX="170.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We will investigate the Receipt before the reimbursment">
+         <font>
+            <Font name="System Bold" size="8.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
